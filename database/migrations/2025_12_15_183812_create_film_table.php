@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('descFil');
             $table->string('imgFil');
             $table->integer ('dureFil');
-            $table->foreignId('idGenre')->constrained('genres', 'idGenre');
+            $table->foreignId('idGenre')->constrained('genre', 'idGenre');
         });
     }
 
