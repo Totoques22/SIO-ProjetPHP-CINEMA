@@ -91,3 +91,65 @@ nav a:hover {
 
 .user-icon::before {
 }
+
+/* Pop-up Mon compte */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.popup-overlay.active {
+    display: block;
+}
+
+.popup {
+    background-color: white;
+    border-radius: 15px;
+    padding: 50px 60px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    min-width: 400px;
+    position: absolute;
+    top: 90px;
+    right: 30px;
+}
+
+.popup h2 {
+    font-family: "Lilita One", cursive;
+    color: #1E293B;
+    font-size: 36px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.popup-btn {
+    font-family: "Lilita One", cursive;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    margin-bottom: 20px;
+}
+
+.popup-btn:hover {
+    opacity: 0.9;
+}
+
+.btn-login {
+    background-color: #991917;
+    color: white;
+}
+
+.btn-signup {
+    background-color: #E5E7EB;
+    color: #1E293B;
+}

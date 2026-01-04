@@ -21,3 +21,7 @@ Route::get('/accueil', function () {
 Route::get('/accueil-admin', function () {
     return view('pages.header-admin');
 });
+
+Route::get('/actuellement-au-cinema', function () {
+    return view('pages.Tous_films');
+});
