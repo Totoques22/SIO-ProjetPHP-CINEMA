@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FilmController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,13 +16,11 @@ Route::get('/inscription', function () {
 });
 
 Route::get('/accueil', function () {
-    return view('pages.header');
+    return view('pages.accueil');
 });
 
 Route::get('/accueil-admin', function () {
     return view('pages.header-admin');
 });
 
-Route::get('/actuellement-au-cinema', function () {
-    return view('pages.Tous_films');
-});
+Route::get('/tous-les-films', [FilmController::class, 'index'])->name('films.index');

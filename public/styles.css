@@ -1,3 +1,5 @@
+/* Fichier : public/styles.css */
+
 * {
     margin: 0;
     padding: 0;
@@ -83,32 +85,6 @@ body {
     font-size: 20px;
 }
 
-.movies-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-@media (max-width: 1200px) {
-    .movies-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media (max-width: 900px) {
-    .movies-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .movies-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 .movie-card {
     cursor: pointer;
     transition: transform 0.3s;
@@ -138,4 +114,74 @@ body {
     color: #8b9aaf;
     text-align: center;
     font-family: Arial, sans-serif;
+}
+
+.main-content {
+    padding: 40px;
+}
+
+.section {
+    margin-bottom: 80px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-title {
+    color: white;
+    font-size: 36px;
+    font-weight: normal;
+}
+
+.see-all-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.see-all-link:hover {
+    color: #991917;
+}
+
+.movies-grid-6 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1400px) {
+    .movies-grid-6 {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 1200px) {
+    .movies-grid-6 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .movies-grid-6 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .movies-grid-6 {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
