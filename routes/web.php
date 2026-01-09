@@ -24,3 +24,5 @@ Route::get('/accueil-admin', function () {
 });
 
 Route::get('/tous-les-films', [FilmController::class, 'index'])->name('films.index');
+
+Route::get('/accueil', [FilmController::class, 'filmsAccueil'])->name('accueil');

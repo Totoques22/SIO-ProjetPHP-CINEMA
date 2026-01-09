@@ -74,7 +74,7 @@
         @foreach($films as $film)
             <div class="movie-card">
                 <div class="movie-poster">
-                    <img src="{{ asset ('images/films/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
+                    <img src="{{ asset ('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
                 </div>
                 <div class="movie-title">{{ $film->titreFil }}</div>
             </div>

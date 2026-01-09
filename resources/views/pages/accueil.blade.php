@@ -33,42 +33,22 @@
         </div>
         <div class="movies-grid-6">
             <!-- Tes cartes de films -->
-            <div class="movie-card">
-                <div class="movie-poster">
-                    <img src="https://www.themoviedb.org/t/p/w1280/3tbnGsJpxtndRkxHeq3uq7VymzI.jpg" alt="Running man">
-                </div>
-                <div class="movie-title">Running man</div>
-            </div>
-            <div class="movie-card">
-                <div class="movie-poster">
-                    <img src="https://www.themoviedb.org/t/p/w1280/qMkHZ0OrQpv8yyU0og611uXBwKL.jpg" alt="Wicked: Partie II">
-                </div>
-                <div class="movie-title">Wicked: Partie II</div>
-            </div>
-            <div class="movie-card">
-                <div class="movie-poster">
-                    <img src="https://www.themoviedb.org/t/p/w1280/oflTA5ZezgU60G30auSIsmrKF6H.jpg" alt="Insaisissables 3">
-                </div>
-                <div class="movie-title">Insaisissables 3</div>
-            </div>
-            <div class="movie-card">
-                <div class="movie-poster">
-                    <img src="https://www.themoviedb.org/t/p/w1280/gKfStbHwDEJgLJutv6abBQ3P1M1.jpg" alt="Jean Valjean">
-                </div>
-                <div class="movie-title">Jean Valjean</div>
-            </div>
-            <div class="movie-card">
-                <div class="movie-poster">
-                    <img src="https://www.themoviedb.org/t/p/w1280/hBI7Wrps6tDjhEzBxJgoPLhbmT1.jpg" alt="Dossier 137">
-                </div>
-                <div class="movie-title">Zootopie 2</div>
-            </div>
-            <div class="movie-card">
-                <div class="movie-poster">
-                    <img src="https://www.themoviedb.org/t/p/w1280/cfGTBeMJU5C4Q2yEq8Nh6rPspn6.jpg" alt="T'as pas changé">
-                </div>
-                <div class="movie-title">Avatar: De feu et de cendres</div>
-            </div>
+            @if(isset($filmsAuCinema) && count($filmsAuCinema) > 0)
+
+                @foreach($filmsAuCinema as $film)
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="{{ asset('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
+                        </div>
+                        <div class="movie-title">
+                            {{ $film->titreFil }}
+                        </div>
+                    </div>
+                @endforeach
+
+            @else
+                <p style="color: white;">Aucun film trouvé dans la base de données.</p>
+            @endif
         </div>
     </div>
 
@@ -79,24 +59,23 @@
             <a href="#" class="see-all-link">Toutes les prochaine sortie ›</a>
         </div>
         <div class="movies-grid-6">
-            <div class="movie-card">
-                <div class="movie-poster">
-                    <img src="https://www.themoviedb.org/t/p/w600_and_h900_face/szdrVdnS8XAzqFyzPDhYXaJk7EK.jpg" alt="Film 1">
-                </div>
-                <div class="movie-title">La femme de ménage</div>
-            </div>
-            <div class="movie-card">
-                <div class="movie-poster">
-                    <img src="https://www.themoviedb.org/t/p/w600_and_h900_face/1WSOiU7XmLoEnYyADAEMQfGe9eN.jpg" alt="Film 2">
-                </div>
-                <div class="movie-title">Bob l'éponge, le film : Un pour tous, tous pirates !</div>
-            </div>
-            <div class="movie-card">
-                <div class="movie-poster">
-                    <img src="https://www.themoviedb.org/t/p/w600_and_h900_face/5EbKjIowNw5yExzrhvu231GFVCf.jpg" alt="Film 3">
-                </div>
-                <div class="movie-title">Anaconda</div>
-            </div>
+            <!-- Films qui sort prochainement -->
+            @if(isset($filmsProchainement) && count($filmsProchainement) > 0)
+
+                @foreach($filmsProchainement as $film)
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="{{ asset('images/'.$film->imgFil) }}" alt="{{ $film->titreFil }}">
+                        </div>
+                        <div class="movie-title">
+                            {{ $film->titreFil }}
+                        </div>
+                    </div>
+                @endforeach
+
+            @else
+                <p style="color: white;">Aucun film trouvé dans la base de données.</p>
+            @endif
 
         </div>
     </div>
