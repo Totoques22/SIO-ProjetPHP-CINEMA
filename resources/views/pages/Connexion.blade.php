@@ -10,7 +10,7 @@
 <body>
 
 <div class="container">
-                <img src="{{ asset('logo_CineForAll.png') }}"
+                <img src="{{ asset('images/logo_CineForAll.png') }}"
                  width="289.5"
                  height="260.5">
 
@@ -34,7 +34,7 @@
             </form>
 
             <div class="login-link">
-                Pas encore inscrit ? <a href="#">S'inscrire ici</a>
+                Pas encore inscrit ? <a href="/inscription">S'inscrire ici</a>
             </div>
         </div>
     </div>

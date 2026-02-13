@@ -11,16 +11,16 @@
 <body>
 <header>
     <div class="header-left">
-        <a href="#" class="logo">
+        <a href="/" class="logo">
             <img src="{{ asset('images/logo_CineForAll.png') }}"
                  width="80"
                  height="71">
         </a>
 
         <nav>
-            <a href="#">Films au cinéma</a>
+            <a href="/">Films au cinéma</a>
             <a href="#">Cinémas</a>
-            <a href="#">Tous les films</a>
+            <a href="{{ route('films.index') }}">Tous les films</a>
         </nav>
     </div>
 
@@ -43,8 +43,8 @@
 <div class="popup-overlay" id="popupOverlay">
     <div class="popup">
         <h2>Mon compte</h2>
-        <button class="popup-btn btn-login">Se connecter</button>
-        <button class="popup-btn btn-signup">S'inscrire</button>
+        <button class="popup-btn btn-login" onclick="window.location.href='/connexion'">Se connecter</button>
+        <button class="popup-btn btn-signup"  onclick="window.location.href='/inscription'">S'inscrire</button>
     </div>
 </div>
 

@@ -16,12 +16,17 @@
 <!-- On inclut le header ici -->
 @include('pages.header')
 
-<div class="main-content">
-    <!-- Barre de recherche -->
-    <div class="search-section">
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Choisissez votre cinéma">
+    <div class="main-content">
+        <!-- Barre de recherche -->
+        <div class="search-section">
+            <div class="search-container">
+                <img src="{{ asset('images/loupe.png') }}"
+                     alt="Rechercher"
+                     class="search-icon-img"
+                     width="20"
+                     height="20">
+                <input type="text" placeholder=" Choisissez votre cinéma">
+            </div>
         </div>
     </div>
 

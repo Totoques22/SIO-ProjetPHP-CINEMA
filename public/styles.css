@@ -185,3 +185,111 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+/* --- NOUVEAU CSS POUR LA VUE CINÉMA --- */
+
+/* Style spécifique pour le logo rouge dans le header */
+.cinema-logo-red {
+    background-color: #991917 !important;
+    border: none !important;
+    color: white !important;
+    font-size: 24px !important;
+    opacity: 1 !important;
+}
+
+/* Titres Cinéma */
+.cinema-top-info {
+    margin-bottom: 50px;
+}
+.cinema-name {
+    font-size: 60px;
+    color: white;
+    margin-bottom: 0;
+}
+.cinema-city {
+    font-size: 30px;
+    color: white;
+    margin-bottom: 20px;
+}
+.info-pill {
+    background-color: #2a3544;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: "Lilita One", cursive;
+    cursor: pointer;
+}
+
+/* Layout Session (Affiche à gauche, contenu à droite) */
+.sessions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.session-item {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+.session-poster {
+    width: 180px;
+    flex-shrink: 0;
+}
+.session-poster img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Détails du film */
+.session-title-red {
+    color: #991917;
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+.session-meta {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* Grille des horaires (Cards) */
+.hours-grid {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.hour-card {
+    background-color: #2a3544;
+    padding: 15px;
+    border-radius: 12px;
+    min-width: 140px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+.hour-card:hover {
+    background-color: #3a4556;
+}
+.badge-tech, .badge-lang {
+    position: absolute;
+    top: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+}
+.badge-tech { left: 10px; }
+.badge-lang { right: 10px; }
+
+.time {
+    font-size: 32px;
+    color: white;
+    margin-top: 10px;
+}
+.endtime {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    color: #6b7a8f;
+}
