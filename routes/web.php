@@ -23,6 +23,16 @@ Route::get('/seance', function () {
     return view('pages.seance');
 });
 
+Route::get('/actuellement-au-cinéma', function () {
+    return view('pages.actuellement-au-cinema');
+});
+
+Route::get('/film', function () {
+    return view('pages.film');
+});
+
 Route::get('/tous-les-films', [FilmController::class, 'index'])->name('films.index');
+
+//Route::get('/actuellement-au-cinema', [FilmController::class, 'index'])->name('films.now');
 
 Route::get('/accueil', [FilmController::class, 'filmsAccueil'])->name('accueil');

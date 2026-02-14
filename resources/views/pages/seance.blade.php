@@ -213,57 +213,55 @@
 </body>
 </html>
 <script>
-    (function () {
+    (() => {
+        const $ = (s, r=document) => r.querySelector(s);
+        const $$ = (s, r=document) => [...r.querySelectorAll(s)];
 
-        // Récupère le bouton qui ouvre le pop-up (id="openCinemaPopup")
-        const openBtn = document.getElementById('openCinemaPopup');
+        const overlay = $('#filtersOverlay');
+        const openBtn = $('#openFilters');
+        const closeBtn = $('#closeFilters');
+        if (!overlay || !openBtn || !closeBtn) return;
 
-        // Récupère l'overlay (le fond sombre + conteneur du pop-up) (id="cinemaPopupOverlay")
-        const overlay = document.getElementById('cinemaPopupOverlay');
+        const open = () => (overlay.classList.add('active'), overlay.setAttribute('aria-hidden','false'));
+        const close = () => (overlay.classList.remove('active'), overlay.setAttribute('aria-hidden','true'));
 
-        // Récupère le bouton de fermeture (la croix) (id="cinemaPopupClose")
-        const closeBtn = document.getElementById('cinemaPopupClose');
+        openBtn.onclick = open;
+        closeBtn.onclick = close;
+        overlay.onclick = e => e.target === overlay && close();
+        document.onkeydown = e => e.key === 'Escape' && close();
 
-        // Si un des éléments n'existe pas dans le HTML, on arrête le script pour éviter une erreur
-        if (!openBtn || !overlay || !closeBtn) return;
-
-        // Fonction qui ouvre le pop-up
-        const open = () => {
-            // Ajoute la classe CSS "active" (qui affiche l'overlay via .active { display: block; } par ex.)
-            overlay.classList.add('active');
-
-            // Met à jour l'attribut d'accessibilité : aria-hidden=false => contenu visible pour lecteurs d'écran
-            overlay.setAttribute('aria-hidden', 'false');
-        };
-
-        // Fonction qui ferme le pop-up
-        const close = () => {
-            // Retire la classe "active" (qui masque l'overlay)
-            overlay.classList.remove('active');
-
-            // aria-hidden=true => contenu caché pour lecteurs d'écran
-            overlay.setAttribute('aria-hidden', 'true');
-        };
-
-        // Au clic sur le bouton "Informations utiles", on ouvre le pop-up
-        openBtn.addEventListener('click', open);
-
-        // Au clic sur la croix, on ferme le pop-up
-        closeBtn.addEventListener('click', close);
-
-        // Au clic sur l'overlay (en dehors de la boîte du pop-up), on ferme
-        overlay.addEventListener('click', (e) => {
-            // e.target = l'élément réellement cliqué
-            // Si on clique directement sur l'overlay (et pas sur la popup à l'intérieur), on ferme
-            if (e.target === overlay) close();
+        // Accordéons
+        $$('.filters-section-toggle').forEach(b => b.onclick = () => {
+            const sec = $(b.dataset.target);
+            if (!sec) return;
+            const collapsed = sec.classList.toggle('is-collapsed');
+            b.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+            const chev = $('.chev', b);
+            if (chev) chev.textContent = collapsed ? '▸' : '▾';
         });
 
-        // Si l'utilisateur appuie sur une touche du clavier
-        document.addEventListener('keydown', (e) => {
-            // Si la touche pressée est "Escape", on ferme le pop-up
-            if (e.key === 'Escape') close();
+        // Genre (multi)
+        $$('.pill').forEach(p => p.onclick = () => p.classList.toggle('pill-active'));
+
+        // Année (single)
+        $$('.year-item').forEach(y => y.onclick = () => {
+            $$('.year-item').forEach(i => i.classList.remove('pill-active'));
+            y.classList.add('pill-active');
         });
 
-    })(); // Exécute immédiatement la fonction
+        // Reset / Apply
+        $('#resetFilters')?.addEventListener('click', () => {
+            $$('.pill, .year-item').forEach(x => x.classList.remove('pill-active'));
+        });
+
+        $('#applyFilters')?.addEventListener('click', () => {
+            const genres = $$('.pill.pill-active').map(p => p.dataset.genre);
+            const year = $('.year-item.pill-active')?.dataset.year || null;
+            console.log({ genres, year });
+            close();
+        });
+    })();
 </script>
+
+
 
