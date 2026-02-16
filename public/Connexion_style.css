@@ -116,3 +116,88 @@ input[type="password"] {
         height: 200px;
     }
 }
+
+/* ===== Ajouts pour le récap séance à gauche (sans casser la page) ===== */
+
+.booking-section{
+    position: relative;
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-start;
+    min-height: 570px;
+}
+
+.booking-card{
+    display: grid;
+    gap: 18px;
+    justify-items: start;
+    margin-top: auto;
+}
+
+.booking-poster{
+    width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.05);
+}
+
+.booking-poster img{
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.booking-info{
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.booking-info p{
+    margin: 4px 0;
+}
+
+.booking-badge{
+    display: inline-block;
+    margin-left: 10px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background-color: rgba(255,255,255,0.12);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+/* Style du logo (comme dans le header) */
+.logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+.logo img {
+    width: 80px;
+    height: 71px;
+}
+
+/* Optionnel : si ton gap 350 est trop énorme, tu peux le réduire juste sur desktop */
+@media (min-width: 901px){
+    .container{ gap: 220px; }
+}
+
+/* Mobile : centre le bloc séance */
+@media (max-width: 900px) {
+    .booking-section{
+        align-items: center;
+        text-align: center;
+    }
+    .booking-card{
+        justify-items: center;
+    }
+}

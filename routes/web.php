@@ -23,12 +23,20 @@ Route::get('/seance', function () {
     return view('pages.seance');
 });
 
-Route::get('/actuellement-au-cinéma', function () {
+Route::get('/actuellement-au-cinema', function () {
     return view('pages.actuellement-au-cinema');
 });
 
 Route::get('/film', function () {
     return view('pages.film');
+});
+
+Route::get('/connexion_reservation', function () {
+    return view('pages.connexion_reservation');
+});
+
+Route::get('/inscription_reservation', function () {
+    return view('pages.inscription_reservation');
 });
 
 Route::get('/tous-les-films', [FilmController::class, 'index'])->name('films.index');

@@ -7,14 +7,30 @@
     <link rel="stylesheet" href="{{ asset('Connexion_style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 </head>
+
 <body>
-
 <div class="container">
-                <img src="{{ asset('images/logo_CineForAll.png') }}"
-                 width="289.5"
-                 height="260.5">
 
+    <!-- GAUCHE : logo + récap séance -->
+    <div class="logo-section booking-section">
+        <a href="/" class="logo">
+            <img src="{{ asset('images/logo_CineForAll.png') }}" alt="CineForAll">
+        </a>
 
+        <div class="booking-card">
+            <div class="booking-poster">
+                <img src="https://www.themoviedb.org/t/p/w1280/3tbnGsJpxtndRkxHeq3uq7VymzI.jpg" alt="Running man">
+            </div>
+
+            <div class="booking-info">
+                <p><strong>Film :</strong> Running man <span class="booking-badge">VF</span></p>
+                <p><strong>Salle :</strong> 10</p>
+                <p><strong>Horaire :</strong> 14H10 – 30/11</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DROITE : formulaire -->
     <div class="form-section">
         <div class="form-card">
             <h1>Connexion</h1>
@@ -34,12 +50,11 @@
             </form>
 
             <div class="login-link">
-                Pas encore inscrit ? <a href="/inscription">S'inscrire ici</a>
+                Déjà inscrit ? <a href="/inscription_reservation">S'inscrire ici</a>
             </div>
         </div>
     </div>
 
 </div>
-
 </body>
 </html>

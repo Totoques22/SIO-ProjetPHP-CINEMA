@@ -472,17 +472,18 @@ body {
 }
 
 /* ===========================
-   PAGE DÉTAIL FILM
-   (scopé : film-detail-body)
+   PAGE DÉTAIL FILM (Refonte Style Gros Titres)
    =========================== */
 
 .film-detail-body {
     position: relative;
     min-height: 100vh;
     overflow-x: hidden;
+    /* On s'assure que tout le texte hérite bien de Lilita One */
+    font-family: "Lilita One", cursive;
 }
 
-/* Background fixe (ne bouge jamais) */
+/* Background fixe & Voile (inchangé, c'est très bien) */
 .film-detail-body::before {
     content: "";
     position: fixed;
@@ -492,127 +493,159 @@ body {
     background-size: cover;
     background-position: right center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* <-- fixe */
+    background-attachment: fixed;
 }
 
-/* Voile sombre + dégradé à gauche pour lisibilité */
 .film-detail-body::after {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
-    background:
-        radial-gradient(circle at 10% 40%, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.72) 45%, rgba(15,23,42,0.20) 100%);
+    background: radial-gradient(circle at 20% 50%, rgba(15,23,42,0.98) 0%, rgba(15,23,42,0.85) 50%, rgba(15,23,42,0.40) 100%);
 }
 
-/* Layout général */
-.film-detail-body .film-detail-wrap {
-    padding: 60px 80px;
-}
-
-/* Carte contenu */
-.film-detail-body .film-detail-card {
+.film-detail-wrap {
+    padding: 80px 100px; /* Plus d'espace autour */
     display: flex;
-    gap: 40px;
+    justify-content: center;
+}
+
+.film-detail-card {
+    display: flex;
+    gap: 60px; /* Plus d'écart entre l'affiche et le texte */
     align-items: flex-start;
-    max-width: 1100px;
+    width: 100%;
+    max-width: 1400px;
 }
 
-/* Colonne gauche (affiche) */
-.film-detail-body .film-detail-left {
-    width: 260px;
-    flex: 0 0 260px;
+/* --- Colonne Gauche (Affiche) --- */
+.film-detail-left {
+    width: 300px; /* Affiche un peu plus grande */
+    flex-shrink: 0;
 }
 
-.film-detail-body .film-detail-poster {
-    width: 260px;
-    border-radius: 8px;
+.film-detail-poster {
+    width: 100%;
+    border-radius: 12px;
     overflow: hidden;
-    background: #2a3544;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    margin-bottom: 20px;
 }
 
-.film-detail-body .film-detail-poster img {
+.film-detail-poster img {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: cover;
 }
 
-.film-detail-body .film-detail-rate {
-    margin-top: 10px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
+.film-detail-rate {
+    font-family: "Lilita One", cursive; /* On change pour Lilita */
+    font-size: 20px;
     color: white;
-    opacity: 0.95;
+    text-align: center;
 }
 
-/* Colonne droite (texte) */
-.film-detail-body .film-detail-right {
+/* --- Colonne Droite (Textes) --- */
+.film-detail-right {
     flex: 1;
-    padding-top: 6px;
+    padding-top: 10px;
+    color: white;
 }
 
-.film-detail-body .film-detail-title-row {
+/* Titre */
+.film-detail-header {
     display: flex;
-    align-items: baseline;
-    gap: 18px;
-    margin-bottom: 12px;
+    align-items: center; /* Aligne le titre et la note verticalement */
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
-.film-detail-body .film-detail-title {
-    font-size: 42px;
-    color: white;
-    line-height: 1.1;
-}
-
-.film-detail-body .film-detail-note {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: white;
-    opacity: 0.95;
-}
-
-.film-detail-body .film-detail-meta {
-    display: grid;
-    gap: 6px;
-    margin-bottom: 18px;
-    font-size: 22px;
-    color: white;
-    opacity: 0.95;
-}
-
-.film-detail-body .film-detail-meta p {
+.film-detail-title {
+    font-size: 72px; /* Beaucoup plus gros */
     margin: 0;
+    line-height: 1;
+    text-transform: uppercase; /* Optionnel : rend souvent mieux sur ce style */
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-.film-detail-body .film-detail-meta strong {
-    font-family: Arial, sans-serif;
-    font-weight: 800;
+.film-detail-note {
+    font-size: 18px;
+    background: rgba(255,255,255,0.1);
+    padding: 5px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
 }
 
-.film-detail-body .film-detail-synopsis {
-    max-width: 760px;
-    font-family: Arial, sans-serif;
-    font-weight: 800;
-    font-size: 22px;
-    line-height: 1.45;
-    color: white;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+/* Infos (Date, Genre, De...) */
+.film-detail-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espacement vertical entre les lignes */
+    margin-bottom: 30px;
+    font-size: 28px; /* Taille augmentée significativement */
+}
+
+.film-detail-meta p {
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Style pour "Sortie :", "De", etc. */
+.meta-label {
+    color: #94a3b8; /* Gris clair pour contraster avec la valeur blanche */
+    margin-right: 8px;
+}
+
+/* Synopsis */
+.film-detail-synopsis {
+    font-family: "Lilita One", cursive; /* Utilisation de la font titre pour le corps */
+    font-size: 24px; /* Gros texte */
+    line-height: 1.4;
+    max-width: 900px;
+    color: #e2e8f0; /* Blanc légèrement cassé pour la lecture */
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 /* Responsive */
-@media (max-width: 1050px) {
-    .film-detail-body .film-detail-wrap { padding: 40px 30px; }
-    .film-detail-body .film-detail-card { gap: 24px; }
-    .film-detail-body .film-detail-left { width: 220px; flex-basis: 220px; }
-    .film-detail-body .film-detail-poster { width: 220px; }
-    .film-detail-body .film-detail-title { font-size: 34px; }
-    .film-detail-body .film-detail-synopsis { font-size: 18px; }
+@media (max-width: 1024px) {
+    .film-detail-card { flex-direction: column; align-items: center; text-align: center; }
+    .film-detail-left { width: 240px; margin-bottom: 30px; }
+    .film-detail-header { justify-content: center; }
+    .film-detail-meta { align-items: center; }
+    .film-detail-title { font-size: 50px; }
 }
 
-@media (max-width: 760px) {
-    .film-detail-body .film-detail-card { flex-direction: column; }
+/* ===== Popup filtres version/type/genre ===== */
+.films-body .filters-panel--big{
+    width: 420px;            /* plus large */
+    padding: 18px;
 }
+
+.films-body .filters-block{
+    margin-top: 14px;
+}
+
+.films-body .filters-block-title{
+    color: white;
+    font-size: 18px;
+    margin: 8px 0 10px;
+    font-family: "Lilita One", cursive;
+}
+
+.films-body .genre-pills{
+    gap: 12px;               /* un peu plus aéré */
+}
+
+.films-body .pill{
+    padding: 7px 14px;
+    font-size: 12px;
+}
+
+/* optionnel : donner plus de “forme bouton” comme sur ta maquette */
+.films-body .pill{
+    border-radius: 999px;
+}
+
 
 

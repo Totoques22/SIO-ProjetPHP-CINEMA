@@ -21,27 +21,28 @@
             <div class="film-detail-poster">
                 <img src="https://www.themoviedb.org/t/p/w1280/3tbnGsJpxtndRkxHeq3uq7VymzI.jpg" alt="Running man">
             </div>
-
+            <!-- J'ai descendu le bouton de notation un peu plus bas via CSS -->
             <p class="film-detail-rate">Noter le film :</p>
         </div>
 
         <div class="film-detail-right">
-            <div class="film-detail-title-row">
+            <!-- Titre et Note sur la même ligne ou bloc -->
+            <div class="film-detail-header">
                 <h1 class="film-detail-title">Running man</h1>
                 <span class="film-detail-note">Note : 3.6</span>
             </div>
 
             <div class="film-detail-meta">
-                <p>Sortie : <strong>19 nov. 2025</strong></p>
-                <p>Science fiction <strong>(2h14)</strong></p>
-                <p>De <strong>Edgar Wright</strong></p>
+                <!-- Utilisation de spans pour cibler la couleur grise du label -->
+                <p><span class="meta-label">Sortie :</span> 19 nov. 2025</p>
+                <p><span class="meta-label">Science fiction</span> (2h14)</p>
+                <p><span class="meta-label">De</span> Edgar Wright</p>
             </div>
 
             <p class="film-detail-synopsis">
                 Dans un futur proche, The Running Man est l’émission numéro un à la télévision : un jeu de survie
                 impitoyable où des candidats, appelés les Runners, doivent échapper pendant 30 jours à des tueurs
-                professionnels, sous l’œil avide d’un public captivé. Chaque jour passé augmente la récompense à la clé
-                – et procure une dose d’adrénaline toujours plus intense.
+                professionnels...
             </p>
         </div>
 
