@@ -47,46 +47,10 @@
         <button class="popup-btn btn-signup"  onclick="window.location.href='/inscription'">S'inscrire</button>
     </div>
 </div>
-
-<script>
-    const userBtn = document.getElementById('userBtn');
-    const popupOverlay = document.getElementById('popupOverlay');
-
-    userBtn.addEventListener('click', () => {
-        popupOverlay.classList.add('active');
-    });
-
-    popupOverlay.addEventListener('click', (e) => {
-        if (e.target === popupOverlay) {
-            popupOverlay.classList.remove('active');
-        }
-    });
-</script>
+@vite('resources/js/popup_connexion.js')
 </body>
 </html>
 
-{{--<header>--}}
-{{--    <div class="header-left">--}}
-{{--        <a href="#" class="logo">--}}
-{{--            <img src="{{ asset('logo_CineForAll.png') }}" width="80" height="71">--}}
-{{--        </a>--}}
-
-{{--        <nav>--}}
-{{--            <a href="#">Films au cinéma</a>--}}
-{{--            <a href="#">Cinémas</a>--}}
-{{--            <a href="#">Tous les films</a>--}}
-{{--        </nav>--}}
-{{--    </div>--}}
-
-{{--    <div class="header-right">--}}
-{{--        <button class="icon-btn search-icon" aria-label="Rechercher">--}}
-{{--            <img src="{{ asset('loupe.png') }}" width="45" height="45">--}}
-{{--        </button>--}}
-{{--        <button class="icon-btn user-icon" aria-label="Profil utilisateur">--}}
-{{--            <img src="{{ asset('utilisateur.png') }}" width="40" height="40">--}}
-{{--        </button>--}}
-{{--    </div>--}}
-{{--</header>--}}
 
 
 

@@ -42,16 +42,15 @@
 
             <div class="filters-section" id="genreSection">
                 <div class="genre-pills">
-                    <button type="button" class="pill" data-genre="Comédie">Comédie</button>
-                    <button type="button" class="pill pill-active" data-genre="Animation">Animation</button>
-                    <button type="button" class="pill" data-genre="Aventure">Aventure</button>
-                    <button type="button" class="pill" data-genre="Science fiction">Science fiction</button>
-                    <button type="button" class="pill" data-genre="Horreur">Horreur</button>
-                    <button type="button" class="pill" data-genre="Drame">Drame</button>
-                    <button type="button" class="pill" data-genre="Action">Action</button>
-                    <button type="button" class="pill" data-genre="Comédie musicale">Comédie musicale</button>
-                    <button type="button" class="pill" data-genre="Fantastique">Fantastique</button>
-                    <button type="button" class="pill" data-genre="Thriller">Thriller</button>
+                    @foreach($genres as $genre)
+                        <button
+                            type="button"
+                            class="pill {{ in_array($genre->idGenre, $selectedGenres ?? []) ? 'pill-active' : '' }}"
+                            data-genre-id="{{ $genre->idGenre }}"
+                        >
+                            {{ $genre->libGenre }}
+                        </button>
+                    @endforeach
                 </div>
             </div>
 
@@ -98,83 +97,7 @@
 
     </div>
 </div>
+@vite('resources/js/filtres_tous_films.js')
 </body>
 </html>
-<script>
-    (function () {
-        const openBtn = document.getElementById('openFilters');
-        const overlay = document.getElementById('filtersOverlay');
-        const closeBtn = document.getElementById('closeFilters');
 
-        if (!openBtn || !overlay || !closeBtn) return;
-
-        const open = () => {
-            overlay.classList.add('active');
-            overlay.setAttribute('aria-hidden', 'false');
-        };
-
-        const close = () => {
-            overlay.classList.remove('active');
-            overlay.setAttribute('aria-hidden', 'true');
-        };
-
-        openBtn.addEventListener('click', open);
-        closeBtn.addEventListener('click', close);
-
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) close();
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') close();
-        });
-
-        // Accordéons (Genre / Année)
-        document.querySelectorAll('.filters-section-toggle').forEach((btn) => {
-            btn.addEventListener('click', () => {
-                const targetSel = btn.getAttribute('data-target');
-                const section = document.querySelector(targetSel);
-                if (!section) return;
-
-                const isCollapsed = section.classList.contains('is-collapsed');
-                section.classList.toggle('is-collapsed', !isCollapsed);
-                btn.setAttribute('aria-expanded', isCollapsed ? 'true' : 'false');
-
-                const chev = btn.querySelector('.chev');
-                if (chev) chev.textContent = isCollapsed ? '▾' : '▸';
-            });
-        });
-
-        // Sélection pills genre (multi-sélection)
-        document.querySelectorAll('.pill').forEach((pill) => {
-            pill.addEventListener('click', () => {
-                pill.classList.toggle('pill-active');
-            });
-        });
-
-        // Sélection année (1 seule)
-        document.querySelectorAll('.year-item').forEach((item) => {
-            item.addEventListener('click', () => {
-                document.querySelectorAll('.year-item').forEach(i => i.classList.remove('pill-active'));
-                item.classList.add('pill-active');
-            });
-        });
-
-        // Reset / Apply (pour l'instant juste console.log)
-        document.getElementById('resetFilters')?.addEventListener('click', () => {
-            document.querySelectorAll('.pill').forEach(p => p.classList.remove('pill-active'));
-            document.querySelectorAll('.year-item').forEach(i => i.classList.remove('pill-active'));
-        });
-
-        document.getElementById('applyFilters')?.addEventListener('click', () => {
-            const genres = [...document.querySelectorAll('.pill.pill-active')].map(p => p.dataset.genre);
-            const year = document.querySelector('.year-item.pill-active')?.dataset.year || null;
-            console.log({ genres, year });
-
-            // Ici tu peux soit:
-            // - envoyer ces valeurs dans l'URL (?genres=...&year=...)
-            // - ou faire une requête AJAX
-            close();
-        });
-    })();
-</script>

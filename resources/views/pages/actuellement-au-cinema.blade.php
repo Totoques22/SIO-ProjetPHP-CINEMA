@@ -58,16 +58,15 @@
                 <div class="filters-block">
                     <div class="filters-block-title">Genre</div>
                     <div class="genre-pills">
-                        <button type="button" class="pill" data-filter="genre" data-value="Comédie">Comédie</button>
-                        <button type="button" class="pill" data-filter="genre" data-value="Animation">Animation</button>
-                        <button type="button" class="pill pill-active" data-filter="genre" data-value="Aventure">Aventure</button>
-                        <button type="button" class="pill" data-filter="genre" data-value="Science fiction">Science fiction</button>
-                        <button type="button" class="pill" data-filter="genre" data-value="Horreur">Horreur</button>
-                        <button type="button" class="pill" data-filter="genre" data-value="Drame">Drame</button>
-                        <button type="button" class="pill" data-filter="genre" data-value="Action">Action</button>
-                        <button type="button" class="pill pill-active" data-filter="genre" data-value="Comédie musicale">Comédie musicale</button>
-                        <button type="button" class="pill pill-active" data-filter="genre" data-value="Fantastique">Fantastique</button>
-                        <button type="button" class="pill" data-filter="genre" data-value="Thriller">Thriller</button>
+                        @foreach($genres as $genre)
+                            <button
+                                type="button"
+                                class="pill {{ in_array($genre->idGenre, $selectedGenres ?? []) ? 'pill-active' : '' }}"
+                                data-genre-id="{{ $genre->idGenre }}"
+                            >
+                                {{ $genre->libGenre }}
+                            </button>
+                        @endforeach
                     </div>
                 </div>
 
@@ -93,47 +92,7 @@
 
     </div>
 </div>
+@vite('resources/js/filtres_actuellement_cinema.js')
 </body>
-<script>
-    (() => {
-        const openBtn = document.getElementById('openFilters');
-        const overlay = document.getElementById('filtersOverlay');
-        const closeBtn = document.getElementById('closeFilters');
-        if (!openBtn || !overlay || !closeBtn) return;
-
-        const open = () => (overlay.classList.add('active'), overlay.setAttribute('aria-hidden','false'));
-        const close = () => (overlay.classList.remove('active'), overlay.setAttribute('aria-hidden','true'));
-
-        openBtn.onclick = open;
-        closeBtn.onclick = close;
-        overlay.onclick = e => e.target === overlay && close();
-        document.onkeydown = e => e.key === 'Escape' && close();
-
-        // Toggle pills (multi)
-        overlay.querySelectorAll('.pill').forEach(p =>
-            p.onclick = () => p.classList.toggle('pill-active')
-        );
-
-        // Reset
-        document.getElementById('resetFilters')?.addEventListener('click', () => {
-            overlay.querySelectorAll('.pill').forEach(p => p.classList.remove('pill-active'));
-        });
-
-        // Apply (ex : récupérer valeurs)
-        document.getElementById('applyFilters')?.addEventListener('click', () => {
-            const picked = [...overlay.querySelectorAll('.pill.pill-active')]
-                .reduce((acc, el) => {
-                    const k = el.dataset.filter;
-                    const v = el.dataset.value;
-                    (acc[k] ||= []).push(v);
-                    return acc;
-                }, {});
-
-            console.log(picked);
-            close();
-        });
-    })();
-</script>
-
 </html>
 

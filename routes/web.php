@@ -23,9 +23,9 @@ Route::get('/seance', function () {
     return view('pages.seance');
 });
 
-Route::get('/actuellement-au-cinema', function () {
-    return view('pages.actuellement-au-cinema');
-});
+//Route::get('/actuellement-au-cinema', function () {
+//    return view('pages.actuellement-au-cinema');
+//});
 
 Route::get('/film', function () {
     return view('pages.film');
@@ -41,6 +41,6 @@ Route::get('/inscription_reservation', function () {
 
 Route::get('/tous-les-films', [FilmController::class, 'index'])->name('films.index');
 
-//Route::get('/actuellement-au-cinema', [FilmController::class, 'index'])->name('films.now');
+Route::get('/actuellement-au-cinema', [FilmController::class, 'filmsAuCinema'])->name('films.cinema');
 
 Route::get('/accueil', [FilmController::class, 'filmsAccueil'])->name('accueil');
