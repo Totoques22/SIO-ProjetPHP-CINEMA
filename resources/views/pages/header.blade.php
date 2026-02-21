@@ -18,7 +18,7 @@
         </a>
 
         <nav>
-            <a href="/">Films au cinéma</a>
+            <a href={{ route('films.cinema') }}>Films au cinéma</a>
             <a href="#">Cinémas</a>
             <a href="{{ route('films.index') }}">Tous les films</a>
         </nav>
