@@ -8,7 +8,7 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.js', 'resources/js/filtres_tous_films.js',
                     'resources/js/filtres_actuellement_cinema.js', 'resources/js/popup_connexion.js'],
             refresh: true,
-        }),
+        }),244
         tailwindcss(),
     ],
     server: {

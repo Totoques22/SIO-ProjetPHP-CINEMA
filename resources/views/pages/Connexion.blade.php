@@ -19,7 +19,8 @@
         <div class="form-card">
             <h1>Connexion</h1>
 
-            <form>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
                 <div class="form-group">
                     <label for="username">Nom d'utilisateur:</label>
                     <input type="text" id="username" name="username" required>

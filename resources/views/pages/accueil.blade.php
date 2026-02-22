@@ -30,17 +30,23 @@
         </div>
     </div>
 
+    @if(session('success'))
+        <script>
+            alert("{{ session('success') }}");
+        </script>
+    @endif
+
     <!-- Section Films au cinéma -->
     <div class="section">
         <div class="section-header">
             <h2 class="section-title">Films au cinéma</h2>
-            <a href="#" class="see-all-link">Tous les films actuellement au cinéma ›</a>
+            <a href="/actuellement-au-cinema" class="see-all-link">Tous les films actuellement au cinéma ›</a>
         </div>
         <div class="movies-grid-6">
             <!-- Tes cartes de films -->
             @if(isset($filmsAuCinema) && count($filmsAuCinema) > 0)
 
-                @foreach($filmsAuCinema as $film)
+                 @foreach($filmsAuCinema as $film)
                     <div class="movie-card">
                         <div class="movie-poster">
                             <img src="{{ asset('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
