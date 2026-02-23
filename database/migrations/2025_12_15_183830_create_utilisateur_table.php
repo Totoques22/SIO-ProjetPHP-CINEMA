@@ -14,11 +14,7 @@ return new class extends Migration
         Schema::create('utilisateur', function (Blueprint $table) {
             $table->id('idUti');
             $table->string('nomUti');
-            $table->string('prenomUti');
-            $table->string('adrUti');
             $table->string('mdpUti');
-            $table->string('mailUti');
-            $table->string('ageUti');
             $table->foreignId('idRoleUti')->constrained('role_utilisateur','idRoleUti');
         });
     }
