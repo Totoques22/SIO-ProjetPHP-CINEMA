@@ -12,7 +12,7 @@ class ConnexionController extends Controller {
 
     public function login(Request $request)
     {
-        dd("Connexion OK");
+        //dd("Connexion OK");
 
         $request->validate([
             'username' => 'required',
