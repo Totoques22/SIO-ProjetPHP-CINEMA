@@ -11,7 +11,7 @@
 <body>
 <header>
     <div class="header-left">
-        <a href="/" class="logo">
+        <a href="/accueil" class="logo">
             <img src="{{ asset('images/logo_CineForAll.png') }}"
                  width="80"
                  height="71">

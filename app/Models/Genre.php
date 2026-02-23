@@ -12,7 +12,7 @@ class Genre extends Model{
     protected $fillable = [
         'libGenre'
     ];
-    public function film()
+    public function films()
     {
         return $this->hasMany(Film::class, 'idGenre', 'idGenre');
     }
