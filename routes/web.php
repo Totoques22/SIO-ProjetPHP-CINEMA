@@ -7,7 +7,7 @@ use App\Http\Controllers\InscriptionController;
 
 Route::get('/', function () {
     return view('pages.accueil');
-});
+})->name('accueil');
 
 Route::get('/accueil', function () {
     return view('pages.accueil');
