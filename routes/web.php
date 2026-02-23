@@ -37,9 +37,7 @@ Route::get('/seance', function () {
 });
 
 
-Route::get('/film', function () {
-    return view('pages.film');
-});
+Route::get('/films/{film}', [FilmController::class, 'show'])->name('films.show');
 
 Route::get('/connexion_reservation', function () {
     return view('pages.connexion_reservation');

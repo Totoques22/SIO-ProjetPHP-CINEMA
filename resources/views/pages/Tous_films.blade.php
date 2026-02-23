@@ -90,14 +90,14 @@
     <div class="movies-grid-6">
         @foreach($films as $film)
             <div class="movie-card">
-                <div class="movie-poster">
-                    <img src="{{ asset ('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
-                </div>
+                <a href="{{ route('films.show', $film->idFil) }}" class="movie-poster-link">
+                    <div class="movie-poster">
+                        <img src="{{ asset('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
+                    </div>
+                </a>
                 <div class="movie-title">{{ $film->titreFil }}</div>
             </div>
         @endforeach
-
-
     </div>
 </div>
 @vite('resources/js/filtres_tous_films.js')
