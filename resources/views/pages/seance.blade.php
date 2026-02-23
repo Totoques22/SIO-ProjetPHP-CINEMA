@@ -19,7 +19,10 @@
     <!-- Search + chips -->
     <div class="search-section cinema-search">
         <div class="search-container">
-            <span class="search-icon">🔍</span>
+            <img src="{{ asset('images/loupe.png') }}"
+                 width="35"
+                 height="35"
+            >
             <input type="text" value="Pathé Vaise" placeholder="Choisissez votre cinéma" />
         </div>
 
@@ -210,58 +213,9 @@
     </div>
 
 </div>
+@vite('resources/js/informations-utiles.js')
 </body>
 </html>
-<script>
-    (() => {
-        const $ = (s, r=document) => r.querySelector(s);
-        const $$ = (s, r=document) => [...r.querySelectorAll(s)];
-
-        const overlay = $('#filtersOverlay');
-        const openBtn = $('#openFilters');
-        const closeBtn = $('#closeFilters');
-        if (!overlay || !openBtn || !closeBtn) return;
-
-        const open = () => (overlay.classList.add('active'), overlay.setAttribute('aria-hidden','false'));
-        const close = () => (overlay.classList.remove('active'), overlay.setAttribute('aria-hidden','true'));
-
-        openBtn.onclick = open;
-        closeBtn.onclick = close;
-        overlay.onclick = e => e.target === overlay && close();
-        document.onkeydown = e => e.key === 'Escape' && close();
-
-        // Accordéons
-        $$('.filters-section-toggle').forEach(b => b.onclick = () => {
-            const sec = $(b.dataset.target);
-            if (!sec) return;
-            const collapsed = sec.classList.toggle('is-collapsed');
-            b.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-            const chev = $('.chev', b);
-            if (chev) chev.textContent = collapsed ? '▸' : '▾';
-        });
-
-        // Genre (multi)
-        $$('.pill').forEach(p => p.onclick = () => p.classList.toggle('pill-active'));
-
-        // Année (single)
-        $$('.year-item').forEach(y => y.onclick = () => {
-            $$('.year-item').forEach(i => i.classList.remove('pill-active'));
-            y.classList.add('pill-active');
-        });
-
-        // Reset / Apply
-        $('#resetFilters')?.addEventListener('click', () => {
-            $$('.pill, .year-item').forEach(x => x.classList.remove('pill-active'));
-        });
-
-        $('#applyFilters')?.addEventListener('click', () => {
-            const genres = $$('.pill.pill-active').map(p => p.dataset.genre);
-            const year = $('.year-item.pill-active')?.dataset.year || null;
-            console.log({ genres, year });
-            close();
-        });
-    })();
-</script>
 
 
 

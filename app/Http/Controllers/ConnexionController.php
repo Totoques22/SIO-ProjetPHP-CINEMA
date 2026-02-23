@@ -12,11 +12,15 @@ class ConnexionController extends Controller {
 
     public function login(Request $request)
     {
+        dd("Connexion OK");
+
         $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
 
-        return redirect('/accueil');
+
+
+        return redirect()->route('accueil')->with('success', 'Connexion effectuée');
     }
 }

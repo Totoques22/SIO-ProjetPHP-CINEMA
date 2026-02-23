@@ -2,18 +2,31 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\ConnexionController;
+use App\Http\Controllers\InscriptionController;
 
 Route::get('/', function () {
     return view('pages.accueil');
 });
 
+Route::get('/accueil', function () {
+    return view('pages.accueil');
+})->name('accueil');
+
+//route de test
+/*Route::get('/accueil', function () {
+    return "Connexion effectuée";
+})->name('accueil');*/
+
 Route::get('/connexion', function () {
     return view('pages.connexion');
 });
+Route::post('/connexion', [ConnexionController::class, 'login'])->name('login');
 
 Route::get('/inscription', function () {
     return view('pages.Inscription');
 });
+Route::post('/inscription', [InscriptionController::class, 'login'])->name('sign-in');
 
 Route::get('/accueil-admin', function () {
     return view('pages.header-admin');
@@ -23,9 +36,6 @@ Route::get('/seance', function () {
     return view('pages.seance');
 });
 
-//Route::get('/actuellement-au-cinema', function () {
-//    return view('pages.actuellement-au-cinema');
-//});
 
 Route::get('/film', function () {
     return view('pages.film');

@@ -18,8 +18,11 @@
 
     <div class="search-section">
         <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Choisissez votre cinéma">
+            <img src="{{ asset('images/loupe.png') }}"
+                 width="35"
+                 height="35"
+            >
+            <input type="text" placeholder="Choisissez un film actuellement au cinéma">
         </div>
         <button class="filter-btn" id="openFilters" type="button">
             <span class="filter-icon">≡</span>
@@ -80,15 +83,14 @@
     </div>
 
     <div class="movies-grid-6">
-{{--        @foreach($films as $film)--}}
-{{--            <div class="movie-card">--}}
-{{--                <div class="movie-poster">--}}
-{{--                    <img src="{{ asset ('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">--}}
-{{--                </div>--}}
-{{--                <div class="movie-title">{{ $film->titreFil }}</div>--}}
-{{--            </div>--}}
-{{--        @endforeach--}}
-
+        @foreach($films as $film)
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="{{ asset ('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
+                </div>
+                <div class="movie-title">{{ $film->titreFil }}</div>
+            </div>
+        @endforeach
 
     </div>
 </div>
