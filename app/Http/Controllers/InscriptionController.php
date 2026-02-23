@@ -13,7 +13,7 @@ class InscriptionController extends Controller {
 
     public function login(Request $request)
     {
-        dd("inscription OK");
+        //dd("inscription OK");
         $request->validate([
             'username' => 'required',
             'password' => 'required'
