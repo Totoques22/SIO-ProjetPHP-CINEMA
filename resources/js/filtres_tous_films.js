@@ -119,6 +119,13 @@
             if (id) params.append('genres[]', id);
         });
 
+        // 1. On va chercher la barre de recherche dans le HTML grâce à son ID
+        const searchInput = document.getElementById('searchBar');
+        const searchValue = searchInput.value.trim();
+        if (searchValue !== '') {
+            params.set('recherche', searchValue);
+        }
+
         const year = document.querySelector('.year-item.pill-active');
         if (year) params.set('year', year.dataset.year);
 

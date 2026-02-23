@@ -16,13 +16,19 @@ class FilmController extends Controller
 
         // Genres sélectionnés via l'URL: /films?genres[]=1&genres[]=3
         $selectedGenres = array_map('intval', $request->input('genres', []));
-
+        // on récupère la saisie de l'utilisateur
+        $recherche = $request->input('recherche');
         // Requête films
         $query = Film::query();
-
         // Appliquer le filtre genre si nécessaire
         if (!empty($selectedGenres)) {
             $query->whereIn('idGenre', $selectedGenres);
+        }
+        // Si la variable $recherche n'est pas vide (l'utilisateur a tapé un mot)
+        if (!empty($recherche)) {
+            // On cherche les films dont le titre ressemble au mot tapé
+            // Le '%' de chaque côté permet de trouver le nom du film même si on tape juste quelque lettre
+            $query->where('titreFil', 'LIKE', '%' . $recherche . '%');
         }
 
         $films = $query->get();

@@ -19,7 +19,7 @@
     <div class="search-section">
         <div class="search-container">
             <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Choisissez votre cinéma">
+            <input type="text" id="searchBar" placeholder="Choisissez votre film">
         </div>
         <button class="filter-btn" id="openFilters" type="button">
             <span class="filter-icon">≡</span>
@@ -93,7 +93,6 @@
                 <div class="movie-title">{{ $film->titreFil }}</div>
             </div>
         @endforeach
-
 
     </div>
 </div>
