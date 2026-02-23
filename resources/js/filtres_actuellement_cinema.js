@@ -1,92 +1,140 @@
-(function () {                                      // Cette ligne crée un espace privé pour le code
-    // Tout ce qui est dedans ne gêne pas le reste de la page
+(function () {
 
-    // Étape 1 : On récupère les éléments importants de la page
-    const openBtn   = document.getElementById('openFilters');   // Le bouton "Filtres" qui ouvre la fenêtre
-    const overlay   = document.getElementById('filtersOverlay'); // La zone entière : fond gris + panneau filtres
-    const closeBtn  = document.getElementById('closeFilters');   // Le bouton pour fermer (souvent une croix)
+    //  On récupère les éléments importants de la page
+    const openBtn = document.getElementById('openFilters');
+    // On récupère le bouton qui ouvre la fenêtre des filtres (id="openFilters").
+
+    const overlay = document.getElementById('filtersOverlay');
+    // On récupère l'overlay : la zone qui contient le fond gris + le panneau de filtres.
+
+    const closeBtn = document.getElementById('closeFilters');
+    // On récupère le bouton qui ferme la fenêtre (souvent une croix).
 
     // Sécurité : si un des trois éléments n'existe pas → on arrête le script
     if (!openBtn || !overlay || !closeBtn) return;
+    // Si un élément est introuvable (null), on arrête pour éviter des erreurs JavaScript.
 
-    // Étape 2 : Deux fonctions simples pour ouvrir et fermer
+    //  Deux fonctions simples pour ouvrir et fermer
     const open = () => {
-        overlay.classList.add('active');                // Ajoute une classe CSS qui rend la fenêtre visible
-        overlay.setAttribute('aria-hidden', 'false');   // Indique aux lecteurs d'écran que c'est visible
+        // Fonction appelée pour afficher la fenêtre des filtres.
+
+        overlay.classList.add('active');
+        // On ajoute la classe CSS "active".
+        // En général, cette classe sert à rendre l'overlay visible.
+
+        overlay.setAttribute('aria-hidden', 'false');
+        // Accessibilité :
+        // On indique aux lecteurs d'écran que la zone n'est plus cachée.
     };
 
     const close = () => {
-        overlay.classList.remove('active');             // Enlève la classe → cache la fenêtre
-        overlay.setAttribute('aria-hidden', 'true');    // Indique aux lecteurs d'écran que c'est caché
+        // Fonction appelée pour masquer la fenêtre des filtres.
+
+        overlay.classList.remove('active');
+        // On retire la classe "active".
+        // Le CSS peut alors cacher la fenêtre.
+
+        overlay.setAttribute('aria-hidden', 'true');
+        // Accessibilité :
+        // On indique aux lecteurs d'écran que la zone est cachée.
     };
 
-    // Étape 3 : On relie les clics aux fonctions
-    openBtn.onclick  = open;                            // Quand on clique sur "Filtres" → on ouvre
-    closeBtn.onclick = close;                           // Quand on clique sur la croix → on ferme
+    // On relie les clics aux fonctions
+    openBtn.onclick = open;
+    // Quand on clique sur le bouton "Filtres", on exécute la fonction open().
 
-    // Étape 4 : Fermer en cliquant sur le fond gris
-    overlay.onclick = function(e) {                     // Quand on clique n'importe où dans overlay
-        if (e.target === overlay) {                     // Seulement si c'est vraiment le fond (pas un bouton dedans)
-            close();                                    // → on ferme
+    closeBtn.onclick = close;
+    // Quand on clique sur le bouton de fermeture (croix), on exécute close().
+
+    // Fermer en cliquant sur le fond gris
+    overlay.onclick = function(e) {
+        // On écoute les clics sur toute la zone overlay.
+
+        if (e.target === overlay) {
+            // e.target = l'élément exact cliqué.
+            // Si on clique directement sur le fond gris (overlay),
+            // et pas sur un élément à l'intérieur (panneau, bouton, etc.)...
+
+            close();
+            // ...alors on ferme la fenêtre.
         }
     };
 
-    // Étape 5 : Fermer avec la touche Échap
-    document.onkeydown = function(e) {                  // On écoute le clavier sur toute la page
-        if (e.key === 'Escape') {                       // Si la touche est "Échap"
-            close();                                    // → on ferme
+    //  Fermer avec la touche Échap
+    document.onkeydown = function(e) {
+        // On écoute les touches du clavier sur toute la page.
+
+        if (e.key === 'Escape') {
+            // Si la touche pressée est "Escape" (Échap)...
+
+            close();
+            // ...on ferme la fenêtre.
         }
     };
 
-    // Étape 6 : Gérer les boutons "genre" (Comédie, Action, etc.)
+    //  Gérer les boutons "genre" (Comédie, Action, etc.)
     overlay.querySelectorAll('.pill').forEach(function(pill) {
-        pill.onclick = function() {                     // Quand on clique sur un bouton genre
-            pill.classList.toggle('pill-active');       // On allume ou éteint (comme un interrupteur)
+        // On récupère tous les éléments avec la classe ".pill" à l'intérieur de l'overlay.
+        // Chaque "pill" représente un genre (Action, Comédie, etc.).
+
+        pill.onclick = function() {
+            // Quand on clique sur une pastille (genre)...
+
+            pill.classList.toggle('pill-active');
+            // On ajoute ou retire la classe "pill-active".
+            // "toggle" = interrupteur :
+            // - si la classe existe, on la retire
+            // - sinon, on l'ajoute
+            // Cela permet de sélectionner/désélectionner plusieurs genres.
         };
     });
 
-    // Étape 7 : Bouton "Réinitialiser"
+    //  Bouton "Réinitialiser"
     document.getElementById('resetFilters')?.addEventListener('click', function() {
-        // On trouve tous les boutons genre et on les éteint
+        // On récupère le bouton "Réinitialiser" et on écoute son clic.
+        // Le ?. (optional chaining) signifie :
+        // "si ce bouton existe, ajoute l'événement ; sinon ne fais rien".
+        // Cela évite une erreur si le bouton n'est pas présent dans la page.
+
         overlay.querySelectorAll('.pill').forEach(function(pill) {
+            // On récupère toutes les pastilles de genre dans l'overlay.
+
             pill.classList.remove('pill-active');
+            // On retire la classe "pill-active" à chaque pastille.
+            // Résultat : tous les genres sont désélectionnés.
         });
     });
 
-    // // Étape 8 : Bouton "Appliquer"
-    // document.getElementById('applyFilters')?.addEventListener('click', function() {
-    //
-    //     // On crée une liste vide pour stocker les choix
-    //     let selections = [];
-    //
-    //     // On regarde tous les boutons genre
-    //     overlay.querySelectorAll('.pill').forEach(function(pill) {
-    //         // Si le bouton est allumé (a la classe pill-active)
-    //         if (pill.classList.contains('pill-active')) {
-    //             // On ajoute la valeur qu'il contient (ex: "Comédie")
-    //             selections.push(pill.dataset.value);
-    //         }
-    //     });
-    //
-    //     // On affiche la liste dans la console du navigateur (pour tester)
-    //     console.log("Genres sélectionnés :", selections);
-    //
-    //     // On ferme la fenêtre une fois les choix récupérés
-    //     close();
-    // });
-
-    // Étape 8 : Bouton "Appliquer"
+    //  Bouton "Appliquer"
     document.getElementById('applyFilters')?.addEventListener('click', function() {
+        // On récupère le bouton "Appliquer" (s'il existe) et on écoute son clic.
+
         const params = new URLSearchParams();
+        // URLSearchParams sert à construire proprement les paramètres d'URL.
+        // Exemple : ?genres[]=28&genres[]=35
 
         overlay.querySelectorAll('.pill.pill-active').forEach(function(p) {
+            // On récupère seulement les pastilles actuellement actives (sélectionnées).
+
             const id = p.dataset.genreId;
+            // On lit l'attribut data-genre-id en HTML via dataset.
+            // Exemple : <button data-genre-id="28">Action</button>
+            // En JS, ça devient p.dataset.genreId.
+
             if (id) params.append('genres[]', id);
+            // Si un id existe, on l'ajoute aux paramètres d'URL.
+            // append() permet d'ajouter plusieurs valeurs avec la même clé (genres[]).
         });
 
         window.location.href = '/actuellement-au-cinema?' + params.toString();
+        // On redirige l'utilisateur vers une nouvelle URL avec les filtres choisis.
+        // Exemples :
+        // /actuellement-au-cinema?genres[]=28
+        // /actuellement-au-cinema?genres[]=28&genres[]=35
 
         close();
+        // On ferme la fenêtre des filtres.
+        // (Même si la page va généralement se recharger juste après la redirection.)
     });
 
-})();   // Cette ligne lance tout le code immédiatement
+})();

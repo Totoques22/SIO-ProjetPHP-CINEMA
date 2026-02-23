@@ -1,133 +1,190 @@
-(function () {                                      // Cette ligne crée un espace privé pour le code
-    // Tout le code à l’intérieur reste privé
+(function () {
 
-    // On cherche les trois éléments principaux dans la page HTML
-    const openBtn = document.getElementById('openFilters');     // Le bouton qui dit "Filtres" ou "Ouvrir les filtres"
-    const overlay = document.getElementById('filtersOverlay');  // La grande zone qui contient le fond gris + le panneau des filtres
-    const closeBtn = document.getElementById('closeFilters');   // Le bouton pour fermer (souvent une croix ✕)
+    const openBtn = document.getElementById('openFilters');
+    // On récupère le bouton qui ouvre les filtres
 
-    // Sécurité : si l’un des trois éléments n’est pas trouvé dans la page → on arrête tout de suite
+    const overlay = document.getElementById('filtersOverlay');
+    // On récupère le conteneur principal des filtres
+
+    const closeBtn = document.getElementById('closeFilters');
+    // On récupère le bouton qui ferme le panneau
+
+    // Vérification de sécurité :
+    // Si un des éléments n'existe pas dans la page HTML, on arrête le script.
     if (!openBtn || !overlay || !closeBtn) return;
 
-    // Fonction qui ouvre le panneau de filtres
+    // Fonctions pour ouvrir / fermer le panneau
+
     const open = () => {
-        overlay.classList.add('active');                // On ajoute le mot "active" à la liste des classes → ça le rend visible (grâce au CSS)
-        overlay.setAttribute('aria-hidden', 'false');   // On dit aux lecteurs d’écran : "maintenant je suis visible"
+        // Fonction appelée pour afficher le panneau de filtres.
+
+        overlay.classList.add('active');
+        // On ajoute la classe CSS "active" à l'overlay.
+
+        overlay.setAttribute('aria-hidden', 'false');
+        // Accessibilité (lecteurs d'écran) :
+        // On indique que cet élément n'est plus caché.
     };
 
-    // Fonction qui ferme le panneau de filtres
     const close = () => {
-        overlay.classList.remove('active');             // On enlève le mot "active" → le panneau disparaît (grâce au CSS)
-        overlay.setAttribute('aria-hidden', 'true');    // On dit aux lecteurs d’écran : "je suis caché"
+        // Fonction appelée pour masquer le panneau de filtres.
+
+        overlay.classList.remove('active');
+        // On retire la classe CSS "active".
+        // Le CSS peut alors cacher le panneau.
+
+        overlay.setAttribute('aria-hidden', 'true');
+        // Accessibilité :
+        // On indique que cet élément est maintenant caché.
     };
 
-    // Quand on clique sur le bouton "Filtres" → on appelle la fonction open
+    // Événements d'ouverture / fermeture
+
     openBtn.addEventListener('click', open);
+    // Quand on clique sur le bouton d'ouverture, on exécute la fonction open().
 
-    // Quand on clique sur le bouton fermer (croix) → on appelle la fonction close
     closeBtn.addEventListener('click', close);
+    // Quand on clique sur le bouton de fermeture, on exécute la fonction close().
 
-    // Quand on clique n’importe où dans la grande zone overlay
     overlay.addEventListener('click', (e) => {
-        // On vérifie si on a cliqué vraiment sur le fond (pas sur un bouton ou le panneau à l’intérieur)
-        if (e.target === overlay) close();             // Si oui → on ferme
+        // On écoute les clics sur l'overlay.
+
+        if (e.target === overlay) close();
+        // e.target = l'élément exact cliqué.
+        // Si on a cliqué directement sur le fond et non sur le panneau lui-même,
+        // on ferme les filtres.
     });
 
-    // On écoute les touches du clavier sur toute la page
-    document.addEventListener('keydown', (e) => {
-        // Si la personne appuie sur la touche Échap
-        if (e.key === 'Escape') close();               // → on ferme le panneau
-    });
+    // Accordéons
 
-    // ───────────────────────────────────────────────
-    // Gestion des sections qui se plient / déplient (accordéons Genre et Année)
-    // ───────────────────────────────────────────────
     document.querySelectorAll('.filters-section-toggle').forEach((btn) => {
-        // Pour chaque bouton d’accordéon
+        // querySelectorAll(...) récupère tous les boutons qui ouvrent/ferment une section.
+        // forEach(...) permet de traiter chaque bouton un par un.
+
         btn.addEventListener('click', () => {
-            const targetSel = btn.getAttribute('data-target');      // On lit l’attribut data-target (ex: "#genreSection")
-            const section = document.querySelector(targetSel);      // On trouve la zone correspondante
+            // Quand on clique sur un bouton d'accordéon...
 
-            if (!section) return;                           // Si on ne la trouve pas → on arrête
+            const targetSel = btn.getAttribute('data-target');
+            // On lit l'attribut data-target du bouton.
+            // Exemple : data-target="#genreSection"
+            // Cela nous dit quelle section HTML doit être ouverte/fermée.
 
-            const isCollapsed = section.classList.contains('is-collapsed');  // Est-ce que c’est déjà replié ?
-            section.classList.toggle('is-collapsed', !isCollapsed);          // On inverse : si replié → on déplie, et inversement
+            const section = document.querySelector(targetSel);
+            // On récupère dans la page l'élément ciblé par data-target.
 
-            // Accessibilité : on dit si c’est ouvert ou fermé
+            if (!section) return;
+            // Sécurité : si la section n'existe pas, on arrête pour éviter une erreur.
+
+            const isCollapsed = section.classList.contains('is-collapsed');
+            // On vérifie si la section est actuellement repliée (fermée).
+            // true  = repliée
+            // false = ouverte
+
+            section.classList.toggle('is-collapsed', !isCollapsed);
+            // On change l'état de la section :
+            // - si elle était fermée (isCollapsed = true), on enlève "is-collapsed" → elle s'ouvre
+            // - si elle était ouverte (isCollapsed = false), on ajoute "is-collapsed" → elle se ferme
+            //
+            // Le 2e argument de toggle(force) permet de dire explicitement
+            // si la classe doit être présente (true) ou absente (false).
+
             btn.setAttribute('aria-expanded', isCollapsed ? 'true' : 'false');
+            // Accessibilité :
+            // aria-expanded indique si le bouton contrôle une zone ouverte ou fermée.
+            // Si la section était fermée, après clic elle devient ouverte → "true".
+            // Sinon, elle devient fermée → "false".
 
-            // On change la petite flèche à côté du titre
             const chev = btn.querySelector('.chev');
-            if (chev) chev.textContent = isCollapsed ? '▾' : '▸';  // ▾ = ouvert, ▸ = fermé
+            // On cherche le petit élément qui affiche la flèche (chevron) dans le bouton.
+
+            if (chev) chev.textContent = isCollapsed ? '▾' : '▸';
+            // Si la flèche existe :
+            // - section ouverte  → ▾
+            // - section fermée   → ▸
         });
     });
 
-    // ───────────────────────────────────────────────
-    // Les "pastilles" de genres → on peut en choisir plusieurs
-    // ───────────────────────────────────────────────
+    // Sélection des genres (plusieurs choix possibles)
+
     document.querySelectorAll('.pill').forEach((pill) => {
+        // On récupère toutes les "pastilles" de genre (chips / boutons).
+
         pill.addEventListener('click', () => {
-            pill.classList.toggle('pill-active');   // On allume ou on éteint la pastille (comme un bouton on/off)
+            // Quand on clique sur une pastille...
+
+            pill.classList.toggle('pill-active');
+            // On active ou désactive cette pastille.
+            // "toggle" = si la classe existe, on la retire ; sinon on l'ajoute.
+            // Donc plusieurs genres peuvent être sélectionnés en même temps.
         });
     });
 
-    // ───────────────────────────────────────────────
-    // Les années → on ne peut en choisir qu’une seule
-    // ───────────────────────────────────────────────
+    //Sélection de l'année (un seul choix possible)
+
     document.querySelectorAll('.year-item').forEach((item) => {
+        // On récupère toutes les options d'année.
+
         item.addEventListener('click', () => {
-            // D’abord on enlève la sélection sur toutes les années
+            // Quand on clique sur une année...
+
             document.querySelectorAll('.year-item').forEach(i => i.classList.remove('pill-active'));
-            // Ensuite on met la sélection uniquement sur celle qu’on vient de cliquer
+            // On enlève d'abord la classe active sur TOUTES les années.
+            // Ça permet d'avoir une sélection unique (comme des boutons radio).
+
             item.classList.add('pill-active');
+            // Puis on active uniquement l'année sur laquelle on vient de cliquer.
         });
     });
 
-    // ───────────────────────────────────────────────
-    // Bouton "Réinitialiser"
-    // ───────────────────────────────────────────────
+    //Bouton "Réinitialiser"
+
     document.getElementById('resetFilters')?.addEventListener('click', () => {
-        // On éteint toutes les pastilles de genres
+        // On récupère le bouton "Réinitialiser" et on écoute son clic.
+        // Le ?. (optional chaining) signifie :
+        // "si le bouton existe, alors ajoute l'événement ; sinon ne fais rien"
+        // Cela évite une erreur si ce bouton n'est pas présent sur la page.
+
         document.querySelectorAll('.pill').forEach(p => p.classList.remove('pill-active'));
-        // On éteint toutes les années sélectionnées
+        // On désactive tous les genres sélectionnés.
+
         document.querySelectorAll('.year-item').forEach(i => i.classList.remove('pill-active'));
+        // On désactive aussi l'année sélectionnée.
     });
 
-    // ───────────────────────────────────────────────
     // Bouton "Appliquer"
-    // ───────────────────────────────────────────────
-    // document.getElementById('applyFilters')?.addEventListener('click', () => {
-    //     // On récupère tous les genres qui sont allumés
-    //     const genres = [...document.querySelectorAll('.pill.pill-active')]
-    //         .map(p => p.dataset.genre);                     // On crée un tableau avec leurs noms (ex: ["Action", "Drame"])
-    //
-    //     // On récupère l’année sélectionnée (ou rien si aucune)
-    //     const year = document.querySelector('.year-item.pill-active')?.dataset.year || null;
-    //
-    //     // Pour l’instant on affiche juste le résultat dans la console du navigateur
-    //     console.log({ genres, year });
-    //
-    //     // On ferme le panneau de filtres
-    //     close();
-    // });
-    // APRÈS
+
     document.getElementById('applyFilters')?.addEventListener('click', () => {
+        // Même principe : on écoute le clic sur "Appliquer" seulement si le bouton existe.
+
         const params = new URLSearchParams();
+        // URLSearchParams sert à construire proprement les paramètres d'URL.
+        // Exemple final possible : ?genres[]=28&genres[]=35&year=2024
 
         document.querySelectorAll('.pill.pill-active').forEach(p => {
+            // On récupère toutes les pastilles de genre actuellement actives.
+
             const id = p.dataset.genreId;
+            // dataset permet de lire les attributs data-* en HTML.
+            // Ici, on lit data-genre-id (ex: <button data-genre-id="28">Action</button>)
+            // En JavaScript, data-genre-id devient dataset.genreId.
+
             if (id) params.append('genres[]', id);
+            // Si un id existe, on l'ajoute dans l'URL sous la clé "genres[]".
+            // append = on peut ajouter plusieurs valeurs avec le même nom.
         });
 
         const year = document.querySelector('.year-item.pill-active');
+        // On cherche l'année actuellement sélectionnée (il n'y en a qu'une max).
+
         if (year) params.set('year', year.dataset.year);
+        // Si une année est sélectionnée, on ajoute "year=..." dans l'URL.
+        // set = une seule valeur (remplace si déjà présente).
 
         window.location.href = '/tous-les-films?' + params.toString();
+        // Redirection de la page vers l'URL avec les filtres choisis.
 
         close();
+
     });
 
-
-})();                                               // On lance tout le code immédiatement (c’est obligatoire avec l’IIFE)
-
-
+})();

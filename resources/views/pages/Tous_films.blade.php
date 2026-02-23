@@ -18,7 +18,10 @@
 
     <div class="search-section">
         <div class="search-container">
-            <span class="search-icon">🔍</span>
+            <img src="{{ asset('images/loupe.png') }}"
+                 width="35"
+                 height="35"
+            >
             <input type="text" placeholder="Chercher un film">
         </div>
         <button class="filter-btn" id="openFilters" type="button">

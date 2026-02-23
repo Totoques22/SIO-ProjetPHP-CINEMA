@@ -36,9 +36,6 @@ Route::get('/seance', function () {
     return view('pages.seance');
 });
 
-//Route::get('/actuellement-au-cinema', function () {
-//    return view('pages.actuellement-au-cinema');
-//});
 
 Route::get('/film', function () {
     return view('pages.film');

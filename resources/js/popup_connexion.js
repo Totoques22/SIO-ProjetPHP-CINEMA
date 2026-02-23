@@ -25,14 +25,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Bonus très pro : fermer le menu avec la touche Échap
-    document.addEventListener('keydown', (e) => {
-        // Écoute toutes les touches du clavier sur la page
-        if (e.key === 'Escape' && popupOverlay.classList.contains('active')) {
-            // Si on appuie sur Échap ET que le popup est ouvert
-            popupOverlay.classList.remove('active');
-            // → on le ferme
-        }
-    });
-
 });
