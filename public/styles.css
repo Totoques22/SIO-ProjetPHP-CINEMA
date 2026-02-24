@@ -607,15 +607,6 @@ body {
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .film-detail-card { flex-direction: column; align-items: center; text-align: center; }
-    .film-detail-left { width: 240px; margin-bottom: 30px; }
-    .film-detail-header { justify-content: center; }
-    .film-detail-meta { align-items: center; }
-    .film-detail-title { font-size: 50px; }
-}
-
 /* ===== Popup filtres version/type/genre ===== */
 .films-body .filters-panel--big{
     width: 420px;            /* plus large */
@@ -808,7 +799,6 @@ body {
     display: contents; /* garde la grille propre */
 }
 
-/* État vide */
 .manage-empty-state {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255,255,255,0.12);

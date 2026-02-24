@@ -153,7 +153,10 @@ nav a:hover {
     background-color: #E5E7EB;
     color: #1E293B;
 }
-
+.btn-logout {
+    background-color: #991917;
+    color: white;
+}
 /* ===== Menu "Gestion des films" ===== */
 
 .gestion-dropdown {
@@ -180,7 +183,7 @@ nav a:hover {
 .gestion-popup {
     display: none;
     position: absolute;
-    top: 100%; /* IMPORTANT : collé au lien pour éviter le "trou" */
+    top: 100%;
     left: 0;
     z-index: 1100;
 
@@ -193,7 +196,6 @@ nav a:hover {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
-/* Le popup s'affiche quand on survole le bloc OU quand on tab au clavier */
 .gestion-dropdown:hover .gestion-popup,
 .gestion-dropdown:focus-within .gestion-popup {
     display: block;
