@@ -10,6 +10,7 @@
 <body>
 
 <div class="container">
+    <a href="/">
                 <img src="{{ asset('images/logo_CineForAll.png') }}"
                  width="289.5"
                  height="260.5">

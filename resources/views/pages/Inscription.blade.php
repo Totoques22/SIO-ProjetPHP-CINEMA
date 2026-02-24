@@ -23,12 +23,24 @@
             @csrf
                 <div class="form-group">
                     <label for="username">Nom d'utilisateur:</label>
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" name="username" required  class="@error('username') input-error @enderror">
+
+                    @error('username')
+                    <div class="error-message">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="password">Mot de passe:</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" required class="@error('password') input-error @enderror">
+
+                    @error('password')
+                    <div class="error-message">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 <button type="submit" class="submit-btn">S'inscrire</button>

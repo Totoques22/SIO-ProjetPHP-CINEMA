@@ -11,7 +11,7 @@
 </head>
 
 <body class="film-detail-body">
-@include('pages.header')
+@include('pages.header-admin')
 
 <main class="film-detail-wrap">
     <section class="film-detail-card">
@@ -20,7 +20,7 @@
             <div class="film-detail-poster">
                 <img src="{{ asset('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
             </div>
-            <p class="film-detail-rate">Noter le film :</p>
+            <a href="#" class="see-all-link">Gérer le film ›</a>
         </div>
 
         <div class="film-detail-right">
@@ -44,7 +44,7 @@
                         ({{ intdiv($film->dureFil, 60) }}h{{ str_pad($film->dureFil % 60, 2, '0', STR_PAD_LEFT) }})
                     @endif
                 </p>
-{{--                <p><span class="meta-label">De</span> Edgar Wright</p>--}}
+                {{--                <p><span class="meta-label">De</span> Edgar Wright</p>--}}
             </div>
 
             <p class="film-detail-synopsis">

@@ -11,7 +11,7 @@
 </head>
 
 <body class="films-body">
-@include('pages.header')
+@include('pages.header-admin')
 
 <div style="width: 100%;">
     <h1 class="page-title">Tous les films</h1>
@@ -22,7 +22,7 @@
                  width="35"
                  height="35"
             >
-            <input type="text" id="searchBar" placeholder="Chercher un film">
+            <input type="text" placeholder="Chercher un film">
         </div>
         <button class="filter-btn" id="openFilters" type="button">
             <span class="filter-icon">≡</span>
@@ -90,7 +90,7 @@
     <div class="movies-grid-6">
         @foreach($films as $film)
             <div class="movie-card">
-                <a href="{{ route('films.show', $film->idFil) }}" class="movie-poster-link">
+                <a href="{{ route('films.admin.show', $film->idFil) }}" class="movie-poster-link">
                     <div class="movie-poster">
                         <img src="{{ asset('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
                     </div>

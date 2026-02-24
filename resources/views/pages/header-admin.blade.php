@@ -11,18 +11,29 @@
 <body>
 <header>
     <div class="header-left">
-        <a href="#" class="logo">
+        <a href="{{ route('accueil.admin') }}" class="logo">
             <img src="{{ asset('images/logo_CineForAll.png') }}"
                  width="80"
                  height="71">
         </a>
 
         <nav>
-            <a href="#">Films au cinéma</a>
+            <a href="{{ route('films.admin.cinema') }}">Films au cinéma</a>
             <a href="#">Cinémas</a>
-            <a href="#">Tous les films</a>
-            <a href="#">Gestions des films</a>
-        </nav>
+            <a href="{{ route('films.admin.index') }}">Tous les films</a>
+            <div class="gestion-dropdown">
+                <a href="/gestion-films" id="gestionLink" class="gestion-link">
+                    Gestion des films
+                </a>
+
+                <div class="gestion-popup" id="gestionPopup">
+                    <a href="#">Acteur</a>
+                    <a href="#">Réalisateur</a>
+                    <a href="#">Scénariste</a>
+                    <a href="#">Cinéma</a>
+                    <a href="#">Programmation</a>
+                </div>
+            </div>
     </div>
 
     <div class="header-right">
@@ -32,13 +43,28 @@
                  height="45"
             >
         </button>
-        <button class="icon-btn user-icon" aria-label="Profil utilisateur">
+        <button class="icon-btn user-icon" id="userBtn" aria-label="Profil utilisateur">
             <img src="{{ asset('images/utilisateur.png') }}"
                  width="40"
                  height="40"
             >
+
         </button>
     </div>
 </header>
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+        @auth
+        <h2>Mon compte</h2>
+            <form method="POST" action="#" style="margin-top:10px;">
+                <button type="submit" class="popup-btn btn-logout">
+                    Se déconnecter
+                </button>
+            </form>
+        @endauth
+    </div>
+</div>
+@vite('resources/js/popup-gestion.js')
+@vite('resources/js/popup_connexion.js')
 </body>
 </html>
