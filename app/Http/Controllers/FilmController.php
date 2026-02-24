@@ -35,6 +35,43 @@ class FilmController extends Controller
 
         return view('pages.Tous_films', compact('films', 'genres', 'selectedGenres'));
     }
+
+    public function indexAdmin(Request $request)
+    {
+        $genres = Genre::orderBy('libGenre')->get();
+        $selectedGenres = array_map('intval', $request->input('genres', []));
+        $recherche = $request->input('recherche');
+        $query = Film::query();
+        if (!empty($selectedGenres)) {
+            $query->whereIn('idGenre', $selectedGenres);
+        }
+        if (!empty($recherche)) {
+            $query->where('titreFil', 'LIKE', '%' . $recherche . '%');
+        }
+
+        $films = $query->get();
+
+        return view('pages.tous_films-admin', compact('films', 'genres', 'selectedGenres'));
+    }
+
+    public function GestionAdmin(Request $request)
+    {
+        $genres = Genre::orderBy('libGenre')->get();
+        $selectedGenres = array_map('intval', $request->input('genres', []));
+        $recherche = $request->input('recherche');
+        $query = Film::query();
+        if (!empty($selectedGenres)) {
+            $query->whereIn('idGenre', $selectedGenres);
+        }
+        if (!empty($recherche)) {
+            $query->where('titreFil', 'LIKE', '%' . $recherche . '%');
+        }
+
+        $films = $query->get();
+
+        return view('pages.gestion_films-admin', compact('films', 'genres', 'selectedGenres'));
+    }
+
     //Contrôle les films qui s'affiche dans la page d'accueil
     public function filmsAccueil(){
         $filmsAuCinema = Film::where('dateSortie', '<=', now())
@@ -46,6 +83,21 @@ class FilmController extends Controller
             ->take(6)
             ->get();
         return view('pages.accueil', compact('filmsAuCinema', 'filmsProchainement'));
+    }
+
+    public function filmsAccueilAdmin()
+    {
+        $filmsAuCinema = Film::where('dateSortie', '<=', now())
+            ->orderBy('dateSortie', 'desc')
+            ->take(6)
+            ->get();
+
+        $filmsProchainement = Film::where('dateSortie', '>', now())
+            ->orderBy('dateSortie', 'asc')
+            ->take(6)
+            ->get();
+
+        return view('pages.accueil-admin', compact('filmsAuCinema', 'filmsProchainement'));
     }
 
     public function filmsAuCinema(Request $request)
@@ -65,10 +117,37 @@ class FilmController extends Controller
 
         return view('pages.actuellement-au-cinema', compact('films', 'genres', 'selectedGenres'));
     }
+
+    public function filmsAuCinemaAdmin(Request $request)
+    {
+
+        $genres = Genre::orderBy('libGenre')->get();
+
+        $selectedGenres = array_map('intval', $request->input('genres', []));
+
+        $query = Film::query();
+
+        if (!empty($selectedGenres)) {
+            $query->whereIn('idGenre', $selectedGenres);
+        }
+
+        $films = $query->get();
+
+        return view('pages.actuellement-au-cinema-admin', compact('films', 'genres', 'selectedGenres'));
+    }
+
     public function show(Film $film)
     {
         $film->load('genre');
 
         return view('pages.film', compact('film'));
     }
+
+    public function showAdmin(Film $film)
+    {
+        $film->load('genre');
+
+        return view('pages.film-admin', compact('film'));
+    }
+
 }

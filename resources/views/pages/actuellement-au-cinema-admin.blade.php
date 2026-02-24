@@ -11,7 +11,7 @@
 </head>
 
 <body class="films-body">
-@include('pages.header')
+@include('pages.header-admin')
 
 <div style="width: 100%;">
     <h1 class="page-title">Actuellement au cinéma</h1>
@@ -85,7 +85,7 @@
     <div class="movies-grid-6">
         @foreach($films as $film)
             <div class="movie-card">
-                <a href="{{ route('films.show', $film->idFil) }}" class="movie-poster-link">
+                <a href="{{ route('films.admin.show', $film->idFil) }}" class="movie-poster-link">
                     <div class="movie-poster">
                         <img src="{{ asset('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
                     </div>

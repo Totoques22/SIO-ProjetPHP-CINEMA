@@ -153,3 +153,65 @@ nav a:hover {
     background-color: #E5E7EB;
     color: #1E293B;
 }
+
+/* ===== Menu "Gestion des films" ===== */
+
+.gestion-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Le lien parent garde le style de ton nav */
+.gestion-link {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+    transition: color 0.3s;
+    white-space: nowrap;
+}
+
+.gestion-link:hover {
+    color: #991917;
+}
+
+/* Popup caché par défaut */
+.gestion-popup {
+    display: none;
+    position: absolute;
+    top: 100%; /* IMPORTANT : collé au lien pour éviter le "trou" */
+    left: 0;
+    z-index: 1100;
+
+    background-color: #0F172A;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 15px;
+    padding: 12px 0;
+    min-width: 260px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Le popup s'affiche quand on survole le bloc OU quand on tab au clavier */
+.gestion-dropdown:hover .gestion-popup,
+.gestion-dropdown:focus-within .gestion-popup {
+    display: block;
+}
+
+/* Liens du popup */
+.gestion-popup a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 8px 18px;
+    transition: color 0.3s, background-color 0.3s;
+    white-space: nowrap;
+}
+
+.gestion-popup a:hover {
+    color: #991917;
+    background-color: rgba(255, 255, 255, 0.04);
+}

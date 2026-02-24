@@ -11,18 +11,29 @@
 <body>
 <header>
     <div class="header-left">
-        <a href="#" class="logo">
+        <a href="{{ route('accueil.admin') }}" class="logo">
             <img src="{{ asset('images/logo_CineForAll.png') }}"
                  width="80"
                  height="71">
         </a>
 
         <nav>
-            <a href="#">Films au cinéma</a>
-            <a href="#">Cinémas</a>
-            <a href="#">Tous les films</a>
-            <a href="#">Gestions des films</a>
-        </nav>
+            <a href="{{ route('films.admin.cinema') }}">Films au cinéma</a>
+            <a href="">Cinémas</a>
+            <a href="{{ route('films.admin.index') }}">Tous les films</a>
+            <div class="gestion-dropdown">
+                <a href="/gestion-films" id="gestionLink" class="gestion-link">
+                    Gestion des films
+                </a>
+
+                <div class="gestion-popup" id="gestionPopup">
+                    <a href="#">Acteur</a>
+                    <a href="#">Réalisateur</a>
+                    <a href="#">Scénariste</a>
+                    <a href="#">Cinéma</a>
+                    <a href="#">Programmation</a>
+                </div>
+            </div>
     </div>
 
     <div class="header-right">
@@ -40,5 +51,6 @@
         </button>
     </div>
 </header>
+@vite('resources/js/popup-gestion.js')
 </body>
 </html>

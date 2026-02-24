@@ -647,5 +647,175 @@ body {
     border-radius: 999px;
 }
 
+/* ===========================
+   PAGE GESTION DES FILMS (ADMIN)
+   =========================== */
+
+.manage-films-body {
+    background-color: #0F172A;
+    min-height: 100vh;
+    font-family: "Lilita One", cursive;
+}
+
+/* Contenu sous le header */
+.manage-films-content {
+    padding: 120px 40px 40px; /* Ajuste si ton header est plus/moins haut */
+    max-width: 1760px;
+    margin: 0 auto;
+}
+
+/* Titre centré + bouton à droite */
+.manage-films-head {
+    position: relative;
+    margin-bottom: 16px;
+    min-height: 54px;
+}
+
+.manage-films-title {
+    color: white;
+    font-size: clamp(34px, 3vw, 52px);
+    text-align: center;
+    line-height: 1;
+    margin: 0;
+}
+
+.manage-add-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #991917;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 22px;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.manage-add-btn:hover {
+    background: #b41f1d;
+}
+
+/* Liste */
+.manage-films-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* proche de ta capture */
+}
+
+/* Ligne film (aspect "barre blanche") */
+.manage-film-row {
+    display: grid;
+    align-items: center;
+    gap: 18px;
+    grid-template-columns:
+        minmax(220px, 1.3fr)   /* titre */
+        270px                  /* date */
+        260px                  /* genre */
+        110px                  /* durée */
+        minmax(260px, 2.2fr)   /* description */
+        38px                   /* edit */
+        38px;                  /* delete */
+
+    background: #efefef;
+    border-radius: 10px;
+    padding: 10px 18px;
+    color: #111;
+    min-height: 64px;
+}
+
+/* Texte général dans les colonnes */
+.manage-film-col {
+    font-family: "Lilita One", cursive;
+    color: #090909;
+    line-height: 1.05;
+}
+
+/* Colonnes desktop */
+.manage-film-name {
+    font-size: clamp(20px, 1.9vw, 42px);
+    white-space: normal;
+    overflow: visible;
+    text-overflow: ellipsis;
+}
+
+.manage-film-date {
+    font-size: clamp(16px, 1.5vw, 34px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.manage-film-genre {
+    font-size: clamp(16px, 1.45vw, 32px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.manage-film-duration {
+    font-size: clamp(16px, 1.4vw, 30px);
+    white-space: nowrap;
+}
+
+.manage-film-description {
+    font-size: clamp(13px, 0.95vw, 22px);
+    line-height: 1.1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;          /* coupe sur 2 lignes comme sur ta capture */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Boutons actions */
+.manage-action-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    background: transparent;
+    color: #8a8a8a;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    padding: 0;
+}
+
+.manage-action-btn i {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.manage-action-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #4a4a4a;
+}
+
+.manage-action-btn--delete:hover {
+    color: #991917;
+}
+
+.manage-delete-form {
+    margin: 0;
+    display: contents; /* garde la grille propre */
+}
+
+/* État vide */
+.manage-empty-state {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: white;
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-family: Arial, sans-serif;
+}
 
 
