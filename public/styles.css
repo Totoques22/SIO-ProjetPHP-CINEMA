@@ -808,4 +808,291 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* ===========================
+   PAGE AJOUTER UN ACTEUR (ADMIN)
+   =========================== */
 
+.add-actor-body {
+    background-color: #0F172A;
+    min-height: 100vh;
+    font-family: "Lilita One", cursive;
+}
+
+.add-actor-page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 24px 24px 40px;
+}
+
+.add-actor-title {
+    color: white;
+    text-align: center;
+    font-size: clamp(28px, 2.6vw, 40px);
+    line-height: 1;
+    margin-bottom: 34px;
+}
+
+.add-actor-form {
+    width: 100%;
+}
+
+.add-actor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 30px;
+    margin-bottom: 18px;
+}
+
+.add-actor-input,
+.add-actor-textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    background: #e9e9e9;
+    color: #1a1a1a;
+    font-family: "Lilita One", cursive;
+    box-shadow: none;
+}
+
+.add-actor-input {
+    height: 84px;
+    padding: 0 30px;
+    font-size: 18px;
+}
+
+.add-actor-textarea {
+    min-height: 215px;
+    resize: vertical;
+    padding: 20px 24px;
+    font-size: 18px;
+    line-height: 1.3;
+    margin-bottom: 28px;
+}
+
+.add-actor-input::placeholder,
+.add-actor-textarea::placeholder {
+    color: #7a7a7a;
+    opacity: 1;
+}
+
+.add-actor-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-actor-submit {
+    min-width: 290px;
+    height: 70px;
+    border: none;
+    border-radius: 8px;
+    background: #991917;
+    color: #111;
+    font-family: "Lilita One", cursive;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.add-actor-submit:hover {
+    background: #b41f1d;
+    transform: translateY(-1px);
+}
+
+.add-actor-submit:active {
+    transform: translateY(0);
+}
+/* Bloc salles spéciales dans la grille */
+.special-rooms-box {
+    grid-column: 1 / -1; /* prend toute la largeur */
+    background: #e9e9e9;
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+
+.special-rooms-title {
+    color: #1a1a1a;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.special-rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 10px 20px;
+}
+
+.special-room-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    color: #1a1a1a;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.special-room-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #991917; /* rouge de ton thème */
+    cursor: pointer;
+}
+
+/* ==========================================
+   PAGE PROGRAMMER UNE SALLE (ADMIN)
+   Fichier : public/programmes.css
+   ========================================== */
+
+/* On reprend le look de add-actor, mais avec quelques éléments spécifiques */
+.add-program-page {
+    max-width: 1100px;
+}
+
+/* Une grille un peu plus souple pour les champs de programmation */
+.add-program-grid {
+    gap: 16px 24px;
+}
+
+/* Bloc champ + label */
+.program-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.program-label {
+    color: white;
+    font-size: 18px;
+    line-height: 1;
+    padding-left: 4px;
+}
+
+/* Select avec le même esprit que tes inputs */
+.add-program-select {
+    width: 100%;
+    height: 84px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    background: #e9e9e9;
+    color: #1a1a1a;
+    font-family: "Lilita One", cursive;
+    font-size: 18px;
+    padding: 0 24px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+
+    /* petite flèche custom très légère */
+    background-image:
+        linear-gradient(45deg, transparent 50%, #666 50%),
+        linear-gradient(135deg, #666 50%, transparent 50%);
+    background-position:
+        calc(100% - 24px) calc(50% - 3px),
+        calc(100% - 16px) calc(50% - 3px);
+    background-size: 8px 8px, 8px 8px;
+    background-repeat: no-repeat;
+}
+
+/* Ajustements pour les inputs date/time/number dans ton style */
+.program-date-input,
+.program-time-input,
+.program-number-input {
+    padding: 0 24px;
+}
+
+/* Texte d'aide */
+.program-help {
+    font-family: Arial, sans-serif;
+    color: #b5c0cf;
+    font-size: 12px;
+    line-height: 1.3;
+    padding: 0 4px;
+}
+
+/* Bloc d'explication (prend toute la largeur de la grille) */
+.program-config-box {
+    grid-column: 1 / -1;
+    background: #e9e9e9;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-top: 2px;
+}
+
+.program-config-title {
+    color: #1a1a1a;
+    font-size: 22px;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.program-config-text {
+    margin: 0 0 8px 0;
+    color: #1a1a1a;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.program-config-text:last-child {
+    margin-bottom: 0;
+}
+
+/* Notes */
+.program-notes {
+    min-height: 150px;
+}
+
+/* Messages Laravel */
+.program-alert {
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    font-family: Arial, sans-serif;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.program-alert--success {
+    background: rgba(34, 197, 94, 0.14);
+    border-color: rgba(34, 197, 94, 0.35);
+}
+
+.program-alert--error {
+    background: rgba(239, 68, 68, 0.14);
+    border-color: rgba(239, 68, 68, 0.35);
+}
+
+.program-alert-list {
+    margin: 8px 0 0 18px;
+    padding: 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .add-program-page {
+        padding: 20px 16px 32px;
+    }
+
+    .add-program-grid {
+        grid-template-columns: 1fr; /* une colonne sur mobile */
+        gap: 14px;
+    }
+
+    .add-program-select,
+    .add-actor-input {
+        height: 72px;
+        font-size: 16px;
+    }
+
+    .add-actor-submit {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .add-actor-actions {
+        justify-content: stretch;
+    }
+}

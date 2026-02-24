@@ -7,7 +7,6 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 
-    <!-- (optionnel) Icônes crayon / poubelle -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Tes CSS -->
@@ -25,7 +24,7 @@
         <h1 class="manage-films-title">Gestion des réalisateurs</h1>
 
         <a
-            {{--            href="{{ route('films.create') }}" --}}
+            href="/ajout-realisateur"
             class="manage-add-btn">
             Ajouter
         </a>
