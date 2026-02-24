@@ -35,6 +35,9 @@
             alert("{{ session('success') }}");
         </script>
     @endif
+    <!--if (auth()->user()->role === 'admin') {
+    // accès admin
+    } pour la page admin plus tard-->
 
     <!-- Section Films au cinéma -->
     <div class="section">

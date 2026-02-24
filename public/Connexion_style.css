@@ -201,3 +201,14 @@ input[type="password"] {
         justify-items: center;
     }
 }
+
+/* couleur et taille des message d'erreur lors de l'incription ou la connexion*/
+.input-error {
+    border: 2px solid red;
+}
+
+.error-message {
+    color: red;
+    font-size: 1.2em;
+    margin-top: 5px;
+}
