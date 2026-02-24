@@ -166,7 +166,6 @@
             const id = p.dataset.genreId;
             // dataset permet de lire les attributs data-* en HTML.
             // Ici, on lit data-genre-id (ex: <button data-genre-id="28">Action</button>)
-            // En JavaScript, data-genre-id devient dataset.genreId.
 
             if (id) params.append('genres[]', id);
             // Si un id existe, on l'ajoute dans l'URL sous la clé "genres[]".

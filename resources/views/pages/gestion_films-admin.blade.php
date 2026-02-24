@@ -73,10 +73,9 @@
                 </a>
 
                 <!-- Action supprimer -->
-                <form>
-{{--                    action="{{ route('films.destroy', $film->idFil) }}" method="POST" class="manage-delete-form">--}}
-{{--                    @csrf--}}
-{{--                    @method('DELETE')--}}
+                <form action="{{ route('films.destroy', $film->idFil) }}" method="POST" class="manage-delete-form">
+                    @csrf
+                    @method('DELETE')
                     <button type="submit"
                             class="manage-action-btn manage-action-btn--delete"
                             aria-label="Supprimer {{ $film->titreFil }}"

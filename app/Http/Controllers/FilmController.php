@@ -150,4 +150,12 @@ class FilmController extends Controller
         return view('pages.film-admin', compact('film'));
     }
 
+    public function destroy($id)
+    {
+        $film = \App\Models\Film::find($id);
+        $film->delete();
+
+        return redirect()->route('films.admin.gestion')->with('success', 'Film supprimé');
+    }
+
 }
