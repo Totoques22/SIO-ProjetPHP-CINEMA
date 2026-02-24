@@ -19,7 +19,7 @@
 
         <nav>
             <a href="{{ route('films.admin.cinema') }}">Films au cinéma</a>
-            <a href="">Cinémas</a>
+            <a href="#">Cinémas</a>
             <a href="{{ route('films.admin.index') }}">Tous les films</a>
             <div class="gestion-dropdown">
                 <a href="/gestion-films" id="gestionLink" class="gestion-link">
@@ -48,6 +48,7 @@
                  width="40"
                  height="40"
             >
+
         </button>
     </div>
 </header>

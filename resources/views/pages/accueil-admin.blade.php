@@ -25,7 +25,7 @@
                  class="search-icon-img"
                  width="20"
                  height="20">
-            <input type="text" placeholder=" Choisissez votre cinéma">
+            <input type="text" placeholder="Rechercher un film">
         </div>
     </div>
 </div>
