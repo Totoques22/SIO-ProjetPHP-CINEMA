@@ -62,24 +62,26 @@
                     {{ $film->descFil ?? 'Aucun synopsis disponible.' }}
                 </div>
 
-{{--                <!-- Action modifier -->--}}
-{{--                <a href="{{ route('films.edit', $film->idFil) }}"--}}
-{{--                   class="manage-action-btn"--}}
-{{--                   aria-label="Modifier {{ $film->titreFil }}">--}}
-{{--                    <i class="bi bi-pencil"></i>--}}
-{{--                </a>--}}
+                <!-- Action modifier -->
+                <a
+{{--                    href="{{ route('films.edit', $film->idFil) }}"--}}
+                   class="manage-action-btn"
+                   aria-label="Modifier {{ $film->titreFil }}">
+                    <i class="bi bi-pencil"></i>
+                </a>
 
-{{--                <!-- Action supprimer -->--}}
-{{--                <form action="{{ route('films.destroy', $film->idFil) }}" method="POST" class="manage-delete-form">--}}
-{{--                    @csrf--}}
-{{--                    @method('DELETE')--}}
-{{--                    <button type="submit"--}}
-{{--                            class="manage-action-btn manage-action-btn--delete"--}}
-{{--                            aria-label="Supprimer {{ $film->titreFil }}"--}}
-{{--                            onclick="return confirm('Supprimer ce film ?')">--}}
-{{--                        <i class="bi bi-trash"></i>--}}
-{{--                    </button>--}}
-{{--                </form>--}}
+                <!-- Action supprimer -->
+                <form>
+{{--                    action="{{ route('films.destroy', $film->idFil) }}" method="POST" class="manage-delete-form">--}}
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                            class="manage-action-btn manage-action-btn--delete"
+                            aria-label="Supprimer {{ $film->titreFil }}"
+                            onclick="return confirm('Supprimer ce film ?')">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </form>
 
             </article>
         @empty
