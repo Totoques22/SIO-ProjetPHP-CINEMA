@@ -25,7 +25,7 @@
                      class="search-icon-img"
                      width="20"
                      height="20">
-                <input type="text" placeholder=" Choisissez votre cinéma">
+                <input type="text" placeholder="Rechercher un film">
             </div>
         </div>
     </div>
@@ -46,20 +46,17 @@
             <a href="/actuellement-au-cinema" class="see-all-link">Tous les films actuellement au cinéma ›</a>
         </div>
         <div class="movies-grid-6">
-            <!-- Tes cartes de films -->
             @if(isset($filmsAuCinema) && count($filmsAuCinema) > 0)
-
-                 @foreach($filmsAuCinema as $film)
+                @foreach($filmsAuCinema as $film)
                     <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="{{ asset('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
-                        </div>
-                        <div class="movie-title">
-                            {{ $film->titreFil }}
-                        </div>
+                        <a href="{{ route('films.show', $film->idFil) }}" class="movie-poster-link">
+                            <div class="movie-poster">
+                                <img src="{{ asset('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
+                            </div>
+                        </a>
+                        <div class="movie-title">{{ $film->titreFil }}</div>
                     </div>
                 @endforeach
-
             @else
                 <p style="color: white;">Aucun film trouvé dans la base de données.</p>
             @endif
@@ -78,12 +75,12 @@
 
                 @foreach($filmsProchainement as $film)
                     <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="{{ asset('images/'.$film->imgFil) }}" alt="{{ $film->titreFil }}">
-                        </div>
-                        <div class="movie-title">
-                            {{ $film->titreFil }}
-                        </div>
+                        <a href="{{ route('films.show', $film->idFil) }}" class="movie-poster-link">
+                            <div class="movie-poster">
+                                <img src="{{ asset('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
+                            </div>
+                        </a>
+                        <div class="movie-title">{{ $film->titreFil }}</div>
                     </div>
                 @endforeach
 

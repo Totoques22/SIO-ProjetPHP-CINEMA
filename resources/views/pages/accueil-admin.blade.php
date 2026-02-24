@@ -25,7 +25,7 @@
                  class="search-icon-img"
                  width="20"
                  height="20">
-            <input type="text" placeholder=" Choisissez votre cinéma">
+            <input type="text" placeholder="Rechercher un film">
         </div>
     </div>
 </div>
@@ -72,12 +72,12 @@
 
             @foreach($filmsProchainement as $film)
                 <div class="movie-card">
-                    <div class="movie-poster">
-                        <img src="{{ asset('images/'.$film->imgFil) }}" alt="{{ $film->titreFil }}">
-                    </div>
-                    <div class="movie-title">
-                        {{ $film->titreFil }}
-                    </div>
+                    <a href="{{ route('films.admin.show', $film->idFil) }}" class="movie-poster-link">
+                        <div class="movie-poster">
+                            <img src="{{ asset('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
+                        </div>
+                    </a>
+                    <div class="movie-title">{{ $film->titreFil }}</div>
                 </div>
             @endforeach
 

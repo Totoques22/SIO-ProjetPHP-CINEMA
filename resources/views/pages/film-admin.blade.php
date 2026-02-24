@@ -20,7 +20,7 @@
             <div class="film-detail-poster">
                 <img src="{{ asset('images/' . $film->imgFil) }}" alt="{{ $film->titreFil }}">
             </div>
-            <p class="film-detail-rate">Noter le film :</p>
+            <a href="#" class="see-all-link">Gérer le film ›</a>
         </div>
 
         <div class="film-detail-right">

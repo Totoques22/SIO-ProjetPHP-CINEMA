@@ -24,9 +24,11 @@
     <div class="manage-films-head">
         <h1 class="manage-films-title">Gestion des films</h1>
 
-{{--        <a href="{{ route('films.create') }}" class="manage-add-btn">--}}
-{{--            Ajouter--}}
-{{--        </a>--}}
+        <a
+{{--            href="{{ route('films.create') }}" --}}
+           class="manage-add-btn">
+            Ajouter
+        </a>
     </div>
 
     <!-- Liste des films -->
@@ -73,8 +75,8 @@
                 <!-- Action supprimer -->
                 <form>
 {{--                    action="{{ route('films.destroy', $film->idFil) }}" method="POST" class="manage-delete-form">--}}
-                    @csrf
-                    @method('DELETE')
+{{--                    @csrf--}}
+{{--                    @method('DELETE')--}}
                     <button type="submit"
                             class="manage-action-btn manage-action-btn--delete"
                             aria-label="Supprimer {{ $film->titreFil }}"

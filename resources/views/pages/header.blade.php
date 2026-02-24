@@ -11,7 +11,7 @@
 <body>
 <header>
     <div class="header-left">
-        <a href="/accueil" class="logo">
+        <a href="/" class="logo">
             <img src="{{ asset('images/logo_CineForAll.png') }}"
                  width="80"
                  height="71">
@@ -42,16 +42,25 @@
 </header>
 <div class="popup-overlay" id="popupOverlay">
     <div class="popup">
-        <h2>Mon compte</h2>
-        <button class="popup-btn btn-login" onclick="window.location.href='/connexion'">Se connecter</button>
-        <button class="popup-btn btn-signup"  onclick="window.location.href='/inscription'">S'inscrire</button>
+        @guest
+            <h2>Mon compte</h2>
+            <button class="popup-btn btn-login" onclick="window.location.href='/connexion'">Se connecter</button>
+            <button class="popup-btn btn-signup"  onclick="window.location.href='/inscription'">S'inscrire</button>
+        @endguest
+            @auth
+                <form method="POST" action="#" style="margin-top:10px;">
+                    <button type="submit" class="popup-btn btn-logout">
+                        Se déconnecter
+                    </button>
+                </form>
+                <button class="popup-btn btn-signup" onclick="window.location.href='/mes-reservations'">
+                    Mes réservations
+                </button>
+            @endauth
     </div>
 </div>
 @vite('resources/js/popup_connexion.js')
 </body>
 </html>
-
-
-
-
+}
 
