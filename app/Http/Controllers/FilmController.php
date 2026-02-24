@@ -59,13 +59,7 @@ class FilmController extends Controller
         // Requête films
         $query = Film::query();
 
-        // Appliquer le filtre genre si nécessaire
-        if (!empty($selectedGenres)) {
-            $query->whereIn('idGenre', $selectedGenres);
-        }
-
         $films = $query->get();
-
         return view('pages.actuellement-au-cinema', compact('films', 'genres', 'selectedGenres'));
     }
 }
