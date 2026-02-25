@@ -20,12 +20,10 @@
 @include('pages.header-admin')
 
 <main class="manage-films-content">
-    <!-- Ligne titre + bouton -->
     <div class="manage-films-head">
         <h1 class="manage-films-title">Gestion des films</h1>
 
-        <a
-{{--            href="{{ route('films.create') }}" --}}
+        <a href="{{ route('film.create') }}"
            class="manage-add-btn">
             Ajouter
         </a>
