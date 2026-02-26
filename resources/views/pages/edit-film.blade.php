@@ -26,7 +26,7 @@
             type="text"
             name="titre"
             class="add-actor-input add-film-title-input"
-            value="{{ old('titre', $film->titreFil) }}"
+            value="{{ $film->titreFil }}"
             required
         />
 
@@ -39,14 +39,14 @@
                         type="text"
                         name="duree"
                         class="add-actor-input add-film-meta-input"
-                        value="{{ old('duree', $film->dureFil) }}"
+                        value="{{ $film->dureFil }}"
                     />
 
                     <input
                         type="text"
                         name="date_sortie"
                         class="add-actor-input add-film-meta-input"
-                        value="{{ old('date_sortie', \Carbon\Carbon::parse($film->dateSortie)->format('d/m/Y')) }}"
+                        value="{{ \Carbon\Carbon::parse($film->dateSortie)->format('d/m/Y') }}"
                         required
                     />
                 </div>
@@ -77,7 +77,7 @@
 
                         <textarea
                             name="synopsis"
-                            class="add-actor-textarea add-film-synopsis">{{ old('synopsis', $film->descFil) }}
+                            class="add-actor-textarea add-film-synopsis">{{  $film->descFil }}
                         </textarea>
                     </div>
 

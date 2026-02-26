@@ -59,13 +59,9 @@ class FilmController extends Controller
     {
         $genres = Genre::orderBy('libGenre')->get();
         $selectedGenres = array_map('intval', $request->input('genres', []));
-        $recherche = $request->input('recherche');
         $query = Film::query();
         if (!empty($selectedGenres)) {
             $query->whereIn('idGenre', $selectedGenres);
-        }
-        if (!empty($recherche)) {
-            $query->where('titreFil', 'LIKE', '%' . $recherche . '%');
         }
 
         $films = $query->get();
@@ -163,16 +159,11 @@ class FilmController extends Controller
     {
         $genres = Genre::orderBy('libGenre')->get();
         $selectedGenres = array_map('intval', $request->input('genres', []));
-        $recherche = $request->input('recherche');
 
         $query = Film::with('genre');
 
         if (!empty($selectedGenres)) {
             $query->whereIn('idGenre', $selectedGenres);
-        }
-
-        if (!empty($recherche)) {
-            $query->where('titreFil', 'LIKE', '%' . $recherche . '%');
         }
 
         $films = $query->get();
@@ -251,7 +242,7 @@ class FilmController extends Controller
 
     public function update(Request $request, $id)
     {
-        $film = Film::findOrFail($id);
+        $film = Film::find($id);
 
         $validated = $request->validate([
             'titre'       => ['required', 'string', 'max:255'],
