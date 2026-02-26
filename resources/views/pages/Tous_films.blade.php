@@ -22,7 +22,7 @@
                  width="35"
                  height="35"
             >
-            <input type="text" placeholder="Chercher un film">
+            <input type="text" id="searchBar" placeholder="Chercher un film">
         </div>
         <button class="filter-btn" id="openFilters" type="button">
             <span class="filter-icon">≡</span>

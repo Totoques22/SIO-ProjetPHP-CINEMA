@@ -27,11 +27,11 @@
                 </a>
 
                 <div class="gestion-popup" id="gestionPopup">
-                    <a href="#">Acteur</a>
-                    <a href="#">Réalisateur</a>
-                    <a href="#">Scénariste</a>
-                    <a href="#">Cinéma</a>
-                    <a href="#">Programmation</a>
+                    <a href="/gestion-acteur">Acteur</a>
+                    <a href="/gestion-realisateur">Réalisateur</a>
+                    <a href="/gestion-scenariste">Scénariste</a>
+                    <a href="/gestion-cinema">Cinéma</a>
+                    <a href="/gestion-programmation">Programmation</a>
                 </div>
             </div>
     </div>

@@ -63,5 +63,3 @@
 @vite('resources/js/popup_connexion.js')
 </body>
 </html>
-}
-
