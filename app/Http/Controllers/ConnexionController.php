@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConnexionController extends Controller {
     public function showLogin()
@@ -21,6 +22,24 @@ class ConnexionController extends Controller {
 
 
 
-        return redirect()->route('accueil')->with('success', 'Connexion effectuée');
+        $credentials = $request->only('username', 'password');
+
+        $remember = $request->has('remember');
+
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+            return redirect()->route('accueil');
+        }
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('accueil')
+                ->with('success', 'Connexion effectuée');
+        }
+
+        return back()->withErrors([
+            'username' => 'Identifiants incorrects'
+        ]);
+
     }
 }

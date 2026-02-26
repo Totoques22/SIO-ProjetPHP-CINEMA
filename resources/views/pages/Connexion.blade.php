@@ -14,7 +14,7 @@
                 <img src="{{ asset('images/logo_CineForAll.png') }}"
                  width="289.5"
                  height="260.5">
-
+    </a>
 
     <div class="form-section">
         <div class="form-card">
@@ -30,6 +30,10 @@
                 <div class="form-group">
                     <label for="password">Mot de passe:</label>
                     <input type="password" id="password" name="password" required>
+                </div>
+
+                <div>
+                    <input type="checkbox" name="remember"> Se souvenir de moi
                 </div>
 
                 <button type="submit" class="submit-btn">Se connecter</button>

@@ -12,7 +12,7 @@ class InscriptionController extends Controller {
         return view('pages.Inscription')->with('success', 'Inscription réussie');
     }
 
-    public function login(Request $request)
+    public function sign_in(Request $request)
     {
         $request->validate([
             'username' => 'required|unique:users,username',
@@ -29,6 +29,7 @@ class InscriptionController extends Controller {
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect('/accueil')->with('success', 'Inscription réussie');
+        return redirect('/accueil')
+            ->with('success', 'Inscription réussie');
     }
 }
