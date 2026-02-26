@@ -150,4 +150,85 @@ class FilmController extends Controller
         return view('pages.film-admin', compact('film'));
     }
 
+    public function destroy($id)
+    {
+        $film = \App\Models\Film::find($id);
+        $film->delete();
+
+        return redirect()->route('films.admin.gestion')->with('success', 'Film supprimé');
+    }
+
+    public function ajoutProgramme(Request $request)
+    {
+        $genres = Genre::orderBy('libGenre')->get();
+        $selectedGenres = array_map('intval', $request->input('genres', []));
+        $recherche = $request->input('recherche');
+
+        $query = Film::with('genre');
+
+        if (!empty($selectedGenres)) {
+            $query->whereIn('idGenre', $selectedGenres);
+        }
+
+        if (!empty($recherche)) {
+            $query->where('titreFil', 'LIKE', '%' . $recherche . '%');
+        }
+
+        $films = $query->get();
+
+        return view('pages.ajout-programme', compact('films', 'genres', 'selectedGenres'));
+    }
+
+    public function create()
+    {
+        $genres = Genre::orderBy('libGenre')->get();
+
+        return view('pages.ajout-film', compact('genres'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'titre'       => ['required', 'string', 'max:255'],
+            'duree'       => ['required', 'string', 'max:50'],
+            'synopsis'    => ['required', 'string'],
+            'date_sortie' => ['required', 'date_format:d/m/Y'],
+
+            'genres'      => ['required', 'array', 'min:1'],
+            'genres.*'    => ['integer', 'exists:genre,idGenre'],
+
+            'affiche'     => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
+        ], [
+            'titre.required' => 'Le titre est obligatoire.',
+            'date_sortie.required' => 'La date de sortie est obligatoire.',
+            'genres.required' => 'Veuillez sélectionner au moins un genre.',
+            'genres.*.exists' => 'Un genre sélectionné est invalide.',
+            'affiche.image' => 'Le fichier doit être une image.',
+        ]);
+
+        $genreId = (int) $validated['genres'][0];
+
+        $imagePath = null;
+        if ($request->hasFile('affiche')) {
+            // stocke dans storage/app/public/films
+            $imagePath = $request->file('affiche')->store('films', 'public');
+        }
+
+        $film = new Film();
+
+        $film->titreFil = $validated['titre'];
+        $film->dureFil = $validated['duree'] ?? null;
+        $film->descFil = $validated['synopsis'] ?? null;
+        $film->dateSortie = $validated['date_sortie'];
+        $film->idGenre = $genreId;
+
+        $film->imgFil = $imagePath;
+
+        $film->save();
+
+        return redirect()
+            ->route('films.admin.gestion')
+            ->with('success', 'Film ajouté avec succès.');
+    }
+
 }

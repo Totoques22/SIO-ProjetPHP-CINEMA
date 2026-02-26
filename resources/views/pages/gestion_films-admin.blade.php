@@ -7,7 +7,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 
-    <!-- (optionnel) Icônes crayon / poubelle -->
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Tes CSS -->
@@ -20,12 +20,10 @@
 @include('pages.header-admin')
 
 <main class="manage-films-content">
-    <!-- Ligne titre + bouton -->
     <div class="manage-films-head">
         <h1 class="manage-films-title">Gestion des films</h1>
 
-        <a
-{{--            href="{{ route('films.create') }}" --}}
+        <a href="{{ route('film.create') }}"
            class="manage-add-btn">
             Ajouter
         </a>
@@ -73,10 +71,9 @@
                 </a>
 
                 <!-- Action supprimer -->
-                <form>
-{{--                    action="{{ route('films.destroy', $film->idFil) }}" method="POST" class="manage-delete-form">--}}
-{{--                    @csrf--}}
-{{--                    @method('DELETE')--}}
+                <form action="{{ route('films.destroy', $film->idFil) }}" method="POST" class="manage-delete-form">
+                    @csrf
+                    @method('DELETE')
                     <button type="submit"
                             class="manage-action-btn manage-action-btn--delete"
                             aria-label="Supprimer {{ $film->titreFil }}"
