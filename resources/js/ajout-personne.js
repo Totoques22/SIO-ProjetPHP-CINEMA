@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
     // On attend que tout le code HTML de la page soit chargé et prêt
-    // avant d'exécuter notre script (très important pour éviter les erreurs).
 
     function resetRow(row) {
         // Cette fonction sert à "nettoyer" une ligne.

@@ -48,8 +48,9 @@
             <button class="popup-btn btn-signup"  onclick="window.location.href='/inscription'">S'inscrire</button>
         @endguest
             @auth
-                <form method="POST" action="#" style="margin-top:10px;">
-                    <button type="submit" class="popup-btn btn-logout">
+                <form style="margin-top:10px;" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="popup-btn btn-logout" type="submit">
                         Se déconnecter
                     </button>
                 </form>

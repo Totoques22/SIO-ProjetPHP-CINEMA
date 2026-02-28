@@ -16,11 +16,12 @@
 <main class="add-actor-page">
     <h1 class="add-actor-title">Ajouter un acteur</h1>
 
-    <form class="add-actor-form" action="/acteurs/ajouter" method="POST">
+    <form class="add-actor-form" action="{{ route('acteur.store') }}" method="POST">
+        @csrf
         <div class="add-actor-grid">
             <input
                 type="text"
-                name="nom"
+                name="nomPer"
                 class="add-actor-input"
                 placeholder="Nom"
                 required
@@ -28,29 +29,28 @@
 
             <input
                 type="text"
-                name="prenom"
+                name="prenomPer"
                 class="add-actor-input"
                 placeholder="Prénom"
                 required
             />
 
             <input
-                type="text"
-                name="date_naissance"
+                name="dateNaisPer"
                 class="add-actor-input"
                 placeholder="Date de naissance"
             />
 
             <input
                 type="text"
-                name="lieu_naissance"
+                name="lieuNaisPer"
                 class="add-actor-input"
                 placeholder="Lieu de naissance"
             />
         </div>
 
         <textarea
-            name="biographie"
+            name="bioPer"
             class="add-actor-textarea"
             placeholder="Biographie"
         ></textarea>

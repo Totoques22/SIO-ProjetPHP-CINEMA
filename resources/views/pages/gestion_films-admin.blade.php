@@ -64,7 +64,7 @@
 
                 <!-- Action modifier -->
                 <a
-{{--                    href="{{ route('films.edit', $film->idFil) }}"--}}
+                    href="{{ route('film.edit', $film->idFil) }}"
                    class="manage-action-btn"
                    aria-label="Modifier {{ $film->titreFil }}">
                     <i class="bi bi-pencil"></i>

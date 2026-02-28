@@ -32,6 +32,10 @@
                     <input type="password" id="password" name="password" required>
                 </div>
 
+                <div>
+                    <input type="checkbox" name="remember"> Se souvenir de moi
+                </div>
+
                 <button type="submit" class="submit-btn">Se connecter</button>
             </form>
 
