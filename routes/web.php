@@ -110,6 +110,8 @@ Route::get('/admin/films/{id}/edit', [FilmController::class, 'edit'])->name('fil
 
 Route::put('/admin/films/{id}', [FilmController::class, 'update'])->name('film.update');
 
+//Acteur
+
 Route::get('/ajout-acteur/ajouter', [ActeurController::class, 'create'])->name('acteur.create');
 
 Route::get('/gestion-acteur', [ActeurController::class, 'index'])->name('acteur.admin.gestion');
@@ -122,6 +124,8 @@ Route::put('/admin/acteur/{id}', [ActeurController::class, 'update'])->name('act
 
 Route::delete('/acteur/{id}', [ActeurController::class, 'destroy'])->name('acteur.destroy');
 
+//Réalisateur
+
 Route::get('/gestion-realisateur', [RealisateurController::class, 'index'])->name('realisateur.admin.gestion');
 
 Route::get('/ajout-realisateur/ajouter', [RealisateurController::class, 'create'])->name('realisateur.create');
@@ -133,6 +137,8 @@ Route::get('/admin/realisateur/{id}/edit', [RealisateurController::class, 'edit'
 Route::put('/admin/realisateur/{id}', [RealisateurController::class, 'update'])->name('realisateur.update');
 
 Route::delete('/realisateur/{id}', [RealisateurController::class, 'destroy'])->name('realisateur.destroy');
+
+//Scénariste
 
 Route::get('/gestion-scenariste', [ScenaristeController::class, 'index'])->name('scenariste.admin.gestion');
 
