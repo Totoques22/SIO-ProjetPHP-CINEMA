@@ -87,9 +87,133 @@ nav a:hover {
 }
 
 .search-icon::before {
-    content: "🔍";
 }
 
 .user-icon::before {
-    content: "👤";
+}
+
+/* Pop-up Mon compte */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.popup-overlay.active {
+    display: block;
+}
+
+.popup {
+    background-color: white;
+    border-radius: 15px;
+    padding: 50px 60px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    min-width: 400px;
+    position: absolute;
+    top: 90px;
+    right: 30px;
+}
+
+.popup h2 {
+    font-family: "Lilita One", cursive;
+    color: #1E293B;
+    font-size: 36px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.popup-btn {
+    font-family: "Lilita One", cursive;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    margin-bottom: 20px;
+}
+
+.popup-btn:hover {
+    opacity: 0.9;
+}
+
+.btn-login {
+    background-color: #991917;
+    color: white;
+}
+
+.btn-signup {
+    background-color: #E5E7EB;
+    color: #1E293B;
+}
+.btn-logout {
+    background-color: #991917;
+    color: white;
+}
+/* ===== Menu "Gestion des films" ===== */
+
+.gestion-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Le lien parent garde le style de ton nav */
+.gestion-link {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+    transition: color 0.3s;
+    white-space: nowrap;
+}
+
+.gestion-link:hover {
+    color: #991917;
+}
+
+/* Popup caché par défaut */
+.gestion-popup {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1100;
+
+    background-color: #0F172A;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 15px;
+    padding: 12px 0;
+    min-width: 260px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.gestion-dropdown:hover .gestion-popup,
+.gestion-dropdown:focus-within .gestion-popup {
+    display: block;
+}
+
+/* Liens du popup */
+.gestion-popup a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 8px 18px;
+    transition: color 0.3s, background-color 0.3s;
+    white-space: nowrap;
+}
+
+.gestion-popup a:hover {
+    color: #991917;
+    background-color: rgba(255, 255, 255, 0.04);
 }

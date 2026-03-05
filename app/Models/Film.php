@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Personne;
 
 /**
  * @method static has(string $string)
@@ -23,6 +24,25 @@ class Film extends Model{
     {
         return $this->belongsTo(Genre::class, 'idGenre', 'idGenre');
     }
+
+    public function personnes()
+    {
+        return $this->belongsToMany(\App\Models\Personne::class, 'participe', 'idFil', 'idPer')
+            ->withPivot('idRolePer');
+    }
+
+    public function acteurs()
+    {
+        return $this->personnes()->where('personne.idRolePer', 1);
+    }
+
+
+    public function scenaristes()
+    {
+        return $this->personnes()->where('personne.idRolePer', 3);
+    }
+
+
     public function seances() {
         return $this->hasMany(Seance::class, 'idFil', 'idFil');
     }

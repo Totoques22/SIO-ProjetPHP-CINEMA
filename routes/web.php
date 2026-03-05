@@ -7,6 +7,7 @@ use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\ActeurController;
 use App\Http\Controllers\RealisateurController;
 use App\Http\Controllers\ScenaristeController;
+use App\Http\Controllers\FilmAdminController;
 use App\Http\Controllers\CinemaController;
 
 //Route::get('/', function () {
@@ -32,6 +33,9 @@ Route::get('/inscription', function () {
 });
 Route::post('/inscription', [InscriptionController::class, 'login'])->name('sign-in');
 
+Route::get('/seance', function () {
+    return view('pages.seance');
+});
 
 Route::get('/connexion_reservation', function () {
     return view('pages.connexion_reservation');
@@ -51,6 +55,7 @@ Route::get('/gestion-scenariste', function () {
 
 Route::get('/gestion-cinema', function () {
     return view('pages.gestion-cinema');
+
 });
 
 Route::get('/gestion-programmation', function () {
@@ -61,6 +66,49 @@ Route::get('/inscription_reservation', function () {
     return view('pages.inscription_reservation');
 });
 
+  /*
+Route::get('/ajout-cinema', function () {
+    return view('pages.ajout-cinema');
+});
+
+Route::get('/reservation', function () {
+    return view('pages.reservation');
+});
+
+
+Route::get('/tous-les-films', [FilmController::class, 'index'])->name('films.index');
+
+Route::get('/actuellement-au-cinema', [FilmController::class, 'filmsAuCinema'])->name('films.cinema');
+
+Route::get('/films/{film}', [FilmController::class, 'show'])->name('films.show');
+
+Route::get('/', [FilmController::class, 'filmsAccueil'])->name('accueil');
+
+
+//Admin
+
+Route::get('/tous-les-films-admin', [FilmAdminController::class, 'tousFilm'])->name('films.admin.index');
+
+Route::get('/actuellement-au-cinema-admin', [FilmAdminController::class, 'filmsAuCinemaAdmin'])->name('films.admin.cinema');
+
+Route::get('/accueil-admin', [FilmAdminController::class, 'filmsAccueilAdmin'])->name('accueil.admin');
+
+Route::get('/films-admin/{film}', [FilmAdminController::class, 'show'])->name('films.admin.show');
+
+Route::get('/gestion-films', [FilmAdminController::class, 'index'])->name('films.admin.gestion');
+
+Route::delete('/films/{film}', [FilmAdminController::class, 'destroy'])->name('films.destroy');
+
+Route::get('/ajout-programme', [FilmAdminController::class, 'ajoutProgramme'])->name('ajout.programme');
+
+Route::get('/ajout-film/ajouter', [FilmAdminController::class, 'create'])->name('film.create');
+
+Route::post('/ajout-film/ajouter', [FilmAdminController::class, 'store'])->name('film.store');
+
+Route::get('/admin/films/{id}/edit', [FilmAdminController::class, 'edit'])->name('film.edit');
+
+Route::put('/admin/films/{id}', [FilmAdminController::class, 'update'])->name('film.update');
+*/
 Route::get('/ajout-acteur', function () {
     return view('pages.ajout-acteur');
 });
