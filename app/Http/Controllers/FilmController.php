@@ -48,7 +48,7 @@ class FilmController extends Controller
 
 
     //Contrôle les films qui s'affiche dans la page d'accueil
-    public function filmsAccueil(){
+    public function filmsAccueil(request $request){
         $recherche = $request->input('recherche');
         $filmsAuCinema = Film::where('dateSortie', '<=', now())
             ->orderBy('dateSortie', 'desc') // Les plus récents en premier
