@@ -12,6 +12,8 @@ use App\Http\Controllers\FilmAdminController;
 use App\Http\Controllers\DeconnexionController;
 use App\Http\Controllers\CinemaController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\SeanceController;
+
 
 Route::get('/connexion', function () {
     return view('pages.connexion');
@@ -34,9 +36,6 @@ Route::post('/seance/reservation/{seance}', [ReservationController::class, 'rese
     //->middleware('auth')
     ->name('reservation');
 
-//Route::get('/connexion_reservation', function () {
-//    return view('pages.connexion_reservation');
-//});
 
 Route::get('/gestion-acteur', function () {
     return view('pages.gestion-acteur');
@@ -50,10 +49,6 @@ Route::get('/gestion-scenariste', function () {
     return view('pages.gestion-scenariste');
 });
 
-
-Route::get('/gestion-programmation', function () {
-    return view('pages.gestion-programmation');
-});
 
 Route::get('/reservation', function () {
     return view('pages.reservation');
@@ -76,6 +71,7 @@ Route::get('/realisateur-simple/{id}', [FilmController::class, 'realisateurdetai
 
 
 
+
 //Admin
 
 Route::get('/tous-les-films-admin', [FilmAdminController::class, 'tousFilm'])->name('films.admin.index');
@@ -89,8 +85,6 @@ Route::get('/films-admin/{film}', [FilmAdminController::class, 'show'])->name('f
 Route::get('/gestion-films', [FilmAdminController::class, 'index'])->name('films.admin.gestion');
 
 Route::delete('/films/{film}', [FilmAdminController::class, 'destroy'])->name('films.destroy');
-
-Route::get('/ajout-programme', [FilmAdminController::class, 'ajoutProgramme'])->name('ajout.programme');
 
 Route::get('/ajout-film/ajouter', [FilmAdminController::class, 'create'])->name('film.create');
 
@@ -167,3 +161,10 @@ Route::get('/admin/cinema/{id}/edit', [CinemaController::class, 'edit'])->name('
 Route::put('/admin/cinema/{id}', [CinemaController::class, 'update'])->name('cinema.update');
 Route::delete('/cinema/{id}', [CinemaController::class, 'destroy'])->name('cinema.destroy');
 
+
+Route::get('/gestion-programmation', [SeanceController::class, 'index'])->name('seance.admin.gestion');
+Route::get('/ajout-programme', [SeanceController::class, 'create'])->name('seance.create');
+Route::post('/ajout-programme', [SeanceController::class, 'store'])->name('seance.store');
+Route::get('/admin/seance/{id}/edit', [SeanceController::class, 'edit'])->name('seance.edit');
+Route::put('/admin/seance/{id}', [SeanceController::class, 'update'])->name('seance.update');
+Route::delete('/seance-admin/{id}', [SeanceController::class, 'destroy'])->name('seance.destroy');

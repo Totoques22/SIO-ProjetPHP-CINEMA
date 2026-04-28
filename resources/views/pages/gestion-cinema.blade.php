@@ -21,21 +21,21 @@
 
     <div class="manage-films-list">
         @forelse($cinemas as $cinema)
-            <article class="manage-film-row">
+            <article class="manage-film-row manage-cinema-row">
 
-                <div class="manage-film-col manage-film-name" title="{{ $cinema->nomCin }}">
+                <div class="manage-film-col manage-cinema-name" title="{{ $cinema->nomCin }}">
                     {{ $cinema->nomCin }}
                 </div>
 
-                <div class="manage-film-col manage-film-name">
-                    {{ $cinema->AdrCin }}
+                <div class="manage-film-col manage-cinema-address" title="{{ $cinema->adrCin }}">
+                    {{ $cinema->adrCin }}
                 </div>
 
-                <div class="manage-film-col manage-film-name">
+                <div class="manage-film-col manage-cinema-cp">
                     {{ $cinema->cpCin }}
                 </div>
 
-                <div class="manage-film-col manage-film-name">
+                <div class="manage-film-col manage-cinema-city">
                     {{ $cinema->vilCin }}
                 </div>
 

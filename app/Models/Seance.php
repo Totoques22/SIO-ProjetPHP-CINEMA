@@ -10,6 +10,10 @@ class Seance extends Model{
     public $timestamps= false;
     protected $fillable = [
         'dateHeurSea',
+        'idFil',
+        'idSal',
+        'idTypeSea',
+        'idLangue',
     ];
     public function concerners()
     {

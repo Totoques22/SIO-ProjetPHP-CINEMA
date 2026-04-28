@@ -45,7 +45,7 @@ class CinemaController extends Controller
 
     public function index()
     {
-        $cinemas = Cinema::all();
+        $cinemas = Cinema::with('salles.typeSalle')->get();
         return view('pages.gestion-cinema', compact('cinemas'));
     }
 
