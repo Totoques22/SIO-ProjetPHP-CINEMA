@@ -12,10 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('note', function (Blueprint $table) {
-            $table->float('notFil');
+            $table->id('idNote');
+            $table->boolean('notFil');
             $table->foreignId('idFil')->constrained('films','idFil');
-            $table->foreignId('idUti')->constrained('utilissateur','idUti');
+            $table->foreignId('user_id')->constrained('users','id');
             $table->timestamps();
+            $table->unique(['idFil', 'user_id']);
         });
     }
 

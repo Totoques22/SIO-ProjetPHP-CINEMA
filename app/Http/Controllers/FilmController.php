@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Film;
 use App\Models\Genre;
+use App\Models\Langue;
+use App\Models\TypeSalle;
+use App\Models\TypeSeance;
 use App\Models\Personne;
 use Carbon\Carbon;
+use App\Models\Participe;
 
 class FilmController extends Controller
 {
@@ -35,47 +40,107 @@ class FilmController extends Controller
 
         $films = $query->get();
 
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return view('pages.Tous_films-admin', compact('films', 'genres', 'selectedGenres'));
+        }
+
         return view('pages.Tous_films', compact('films', 'genres', 'selectedGenres'));
     }
 
 
     //Contrôle les films qui s'affiche dans la page d'accueil
-    public function filmsAccueil(){
+    public function filmsAccueil(Request $request)
+    {
+        $recherche = $request->input('recherche');
+        $filmsRecherche = null;
+
+        if (!empty($recherche)) {
+            $filmsRecherche = Film::where('titreFil', 'LIKE', '%' . $recherche . '%')->get();
+        }
+
+
         $filmsAuCinema = Film::where('dateSortie', '<=', now())
-            ->orderBy('dateSortie', 'desc') // Les plus récents en premier
+            ->orderBy('titreFil', 'desc')
             ->take(6)
             ->get();
+
         $filmsProchainement = Film::where('dateSortie', '>', now())
-            ->orderBy('dateSortie', 'asc')
+            ->orderBy('titreFil', 'asc')
             ->take(6)
             ->get();
-        return view('pages.accueil', compact('filmsAuCinema', 'filmsProchainement'));
+
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return view('pages.accueil-admin', compact('filmsAuCinema', 'filmsProchainement', 'filmsRecherche', 'recherche'));
+        }
+
+        return view('pages.accueil', compact('filmsAuCinema', 'filmsProchainement', 'filmsRecherche', 'recherche'));
     }
 
 
     public function filmsAuCinema(Request $request)
     {
-
         $genres = Genre::orderBy('libGenre')->get();
+        $type_salles = TypeSalle::all();
+        $langues = Langue::all();
 
         $selectedGenres = array_map('intval', $request->input('genres', []));
+        $recherche  = $request->input('rechercheCine');
 
-        $query = Film::query();
+        $query = Film::has('seances');
 
         if (!empty($selectedGenres)) {
             $query->whereIn('idGenre', $selectedGenres);
         }
+        if (!empty($recherche)) {
+            $query->where('titreFil', 'LIKE', '%' . $recherche . '%');
+        }
 
         $films = $query->get();
 
-        return view('pages.actuellement-au-cinema', compact('films', 'genres', 'selectedGenres'));
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return view('pages.actuellement-au-cinema-admin', compact('films', 'genres', 'selectedGenres', 'type_salles', 'langues'));
+        }
+        return view('pages.actuellement-au-cinema', compact('films', 'genres', 'selectedGenres', 'type_salles', 'langues'));
     }
 
     public function show(Film $film)
     {
-        $film->load('genre');
+        $film->load('genre', 'notes');
 
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return view('pages.film', compact('film'));
+        }
         return view('pages.film', compact('film'));
+    }
+
+    // Méthode pour afficher le détail d'un acteur
+    public function acteurdetail($id)
+    {
+        // On cherche dans la table personne la personne avec l'id passé dans l'URL
+        // Si l'id n'existe pas en base, Laravel retourne automatiquement une erreur 404
+        $acteur = Personne::findOrFail($id);
+
+        // On envoie la personne trouvée à la vue personne-detail
+        // 'role' permet à la vue de savoir qu'on affiche un acteur
+        return view('pages.personne-detail', [
+            'personne' => $acteur,
+            'role'     => 'acteur',
+        ]);
+    }
+
+// Méthode pour afficher le détail d'un réalisateur
+    public function realisateurdetail($id)
+    {
+        // on cherche la personne par son id
+        // findOrFail retourne la personne si elle existe, sinon 404
+        $realisateur = Personne::findOrFail($id);
+
+        // On envoie la personne à la vue avec le role 'realisateur'
+        // pour que la vue sache comment l'afficher
+        return view('pages.personne-detail', [
+            'personne' => $realisateur,
+            'role'     => 'realisateur',
+        ]);
     }
 
 }
