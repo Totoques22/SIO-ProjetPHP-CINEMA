@@ -10,15 +10,15 @@
 <body>
 <header>
     <div class="header-left">
-        <a href="/" class="logo">
+        <a href="{{ url('/') }}" class="logo">
             <img src="{{ asset('images/logo_CineForAll.png') }}"
                  width="80"
                  height="71">
         </a>
 
         <nav>
-            <a href={{ route('films.cinema') }}>Films au cinéma</a>
-            <a href="/seance">Cinémas</a>
+            <a href="{{ route('films.cinema') }}">Films au cinéma</a>
+            <a href="{{ route('seance') }}">Cinémas</a>
             <a href="{{ route('films.index') }}">Tous les films</a>
         </nav>
     </div>

@@ -25,7 +25,7 @@
         <h1 class="manage-films-title">Gestion des programmations</h1>
 
         <a
-            href="/ajout-programme"
+            href="{{ route('ajout.programme') }}"
             class="manage-add-btn">
             Ajouter
         </a>

@@ -40,7 +40,7 @@
 <div class="section">
     <div class="section-header">
         <h2 class="section-title">Films au cinéma</h2>
-        <a href="/actuellement-au-cinema" class="see-all-link">Tous les films actuellement au cinéma ›</a>
+        <a href="{{ route('films.cinema') }}" class="see-all-link">Tous les films actuellement au cinéma ›</a>
     </div>
     <div class="movies-grid-6">
         @if(isset($filmsAuCinema) && count($filmsAuCinema) > 0)

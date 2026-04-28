@@ -24,7 +24,7 @@
         <h1 class="manage-films-title">Gestion des cinémas</h1>
 
         <a
-            href="/ajout-cinema"
+            href="{{ route('ajout.cinema') }}"
             class="manage-add-btn">
             Ajouter
         </a>

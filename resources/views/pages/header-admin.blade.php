@@ -19,19 +19,19 @@
 
         <nav>
             <a href="{{ route('films.admin.cinema') }}">Films au cinéma</a>
-            <a href="/seance">Cinémas</a>
+            <a href="{{ route('seance') }}">Cinémas</a>
             <a href="{{ route('films.admin.index') }}">Tous les films</a>
             <div class="gestion-dropdown">
-                <a href="/gestion-films" id="gestionLink" class="gestion-link">
+                <a href="{{ route('films.admin.gestion') }}" id="gestionLink" class="gestion-link">
                     Gestion des films
                 </a>
 
                 <div class="gestion-popup" id="gestionPopup">
-                    <a href="/gestion-acteur">Acteur</a>
-                    <a href="/gestion-realisateur">Réalisateur</a>
-                    <a href="/gestion-scenariste">Scénariste</a>
-                    <a href="/gestion-cinema">Cinéma</a>
-                    <a href="/gestion-programmation">Programmation</a>
+                    <a href="{{ route('acteur.admin.gestion') }}">Acteur</a>
+                    <a href="{{ route('realisateur.admin.gestion') }}">Réalisateur</a>
+                    <a href="{{ route('scenariste.admin.gestion') }}">Scénariste</a>
+                    <a href="{{ route('gestion.cinema') }}">Cinéma</a>
+                    <a href="{{ route('gestion.programmation') }}">Programmation</a>
                 </div>
             </div>
     </div>
