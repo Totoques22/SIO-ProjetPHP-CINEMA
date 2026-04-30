@@ -20,7 +20,7 @@
     <!-- GAUCHE : logo + récap séance -->
 
     <div class="logo-section booking-section">
-        <a href="/" class="logo">
+        <a href="{{ url('/') }}" class="logo">
             <img src="{{ asset('images/logo_CineForAll.png') }}" alt="CineForAll">
         </a>
 

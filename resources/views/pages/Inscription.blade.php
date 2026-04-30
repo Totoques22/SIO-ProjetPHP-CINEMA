@@ -10,7 +10,7 @@
 <body>
 
 <div class="container">
-    <a href="/">
+    <a href="{{ url('/') }}">
             <img src="{{ asset('images/logo_CineForAll.png') }}"
                  width="289.5"
                  height="260.5">
@@ -42,10 +42,6 @@
                         {{ $message }}
                     </div>
                     @enderror
-                </div>
-
-                <div>
-                    <input type="checkbox" name="admin ?"> est un admin
                 </div>
 
                 <div>
