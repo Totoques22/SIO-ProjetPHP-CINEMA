@@ -25,6 +25,7 @@
                 <a href="{{ route('films.admin.gestion') }}" id="gestionLink" class="gestion-link">
                     Gestion des films
                 </a>
+                <div> </div>
 
                 <div class="gestion-popup" id="gestionPopup">
                     <a href="{{ route('acteur.admin.gestion') }}">Acteur</a>

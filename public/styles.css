@@ -1685,3 +1685,50 @@ body {
         font-size: 34px;
     }
 }
+/* ===========================
+   PAGE GESTION DES CINÉMAS
+   =========================== */
+
+.manage-cinema-row {
+    grid-template-columns:
+        minmax(260px, 1.3fr)   /* nom */
+        minmax(280px, 1.4fr)   /* adresse */
+        130px                  /* code postal */
+        minmax(180px, 1fr)     /* ville */
+        38px                   /* edit */
+        38px;                  /* delete */
+
+    min-height: 72px;
+    padding: 12px 20px;
+    gap: 28px;
+}
+
+.manage-cinema-name,
+.manage-cinema-address,
+.manage-cinema-cp,
+.manage-cinema-city {
+    font-size: clamp(20px, 1.8vw, 36px);
+    line-height: 1.05;
+    color: #090909;
+}
+
+.manage-cinema-name,
+.manage-cinema-address,
+.manage-cinema-city {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.manage-cinema-cp {
+    white-space: nowrap;
+}
+
+.manage-cinema-row .manage-action-btn {
+    justify-self: center;
+}
+
+.manage-cinema-row .manage-delete-form {
+    margin: 0;
+    display: contents;
+}

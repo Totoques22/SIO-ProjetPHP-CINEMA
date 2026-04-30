@@ -99,9 +99,9 @@ Route::get('/ajout-programme', function () {
 
     Route::delete('/films/{film}', [FilmAdminController::class, 'destroy'])->name('films.destroy');
 
-    Route::get('/ajout-programme', [FilmAdminController::class, 'ajoutProgramme'])->name('ajout.programme');
+Route::get('/ajout-programme', [FilmAdminController::class, 'ajoutProgramme'])->name('ajout.programme');
 
-    Route::get('/ajout-film/ajouter', [FilmAdminController::class, 'create'])->name('film.create');
+Route::get('/ajout-film/ajouter', [FilmAdminController::class, 'create'])->name('film.create');
 
     Route::post('/ajout-film/ajouter', [FilmAdminController::class, 'store'])->name('film.store');
 
@@ -166,3 +166,20 @@ Route::get('/ajout-programme', function () {
 
 // route pour recuperer les recherches de la loupe
     Route::get('/recherche', [RechercheController::class, 'index'])->name('recherche');
+
+
+//Gestion cinema
+Route::get('/gestion-cinema', [CinemaController::class, 'index'])->name('cinema.admin.gestion');
+Route::get('/ajout-cinema/ajouter', [CinemaController::class, 'create'])->name('cinema.create');
+Route::post('/ajout-cinema/ajouter', [CinemaController::class, 'store'])->name('cinema.store');
+Route::get('/admin/cinema/{id}/edit', [CinemaController::class, 'edit'])->name('cinema.edit');
+Route::put('/admin/cinema/{id}', [CinemaController::class, 'update'])->name('cinema.update');
+Route::delete('/cinema/{id}', [CinemaController::class, 'destroy'])->name('cinema.destroy');
+
+
+Route::get('/gestion-programmation', [SeanceController::class, 'index'])->name('seance.admin.gestion');
+Route::get('/ajout-programme', [SeanceController::class, 'create'])->name('seance.create');
+Route::post('/ajout-programme', [SeanceController::class, 'store'])->name('seance.store');
+Route::get('/admin/seance/{id}/edit', [SeanceController::class, 'edit'])->name('seance.edit');
+Route::put('/admin/seance/{id}', [SeanceController::class, 'update'])->name('seance.update');
+Route::delete('/seance-admin/{id}', [SeanceController::class, 'destroy'])->name('seance.destroy');
