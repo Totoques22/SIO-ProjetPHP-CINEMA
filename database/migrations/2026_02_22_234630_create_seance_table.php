@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('seance', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id('idSea');
             $table->dateTime('dateHeurSea');
-            $table->string('langSea');
-            $table->foreignId('idFil')->constrained('film','idFil');
-            $table->foreignId('idSal')->constrained('salle','idSal');
-            $table->foreignId('idTypeSea')->constrained('type_seance','idTypeSea');
+            $table->foreignId('idFil')->constrained('film','idFil')->onDelete('cascade');
+            $table->foreignId('idSal')->constrained('salle','idSal')->onDelete('cascade');
+            $table->foreignId('idTypeSea')->constrained('type_seance','idTypeSea')->onDelete('cascade');
+            $table->foreignId('idLangue')->nullable()->constrained('langue', 'idLangue')->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('genre', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id('idGenre');
             $table->string('libGenre');
         });

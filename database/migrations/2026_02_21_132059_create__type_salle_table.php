@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tarif', function (Blueprint $table) {
-            $table->id('idTar');
-            $table->string('libTar');
-            $table->float('prixTar');
-            $table->foreignId('idTypeSea')->constrained('type_seance','idTypeSea');
-
+        Schema::create('type_salle', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->id('idTyp');
+            $table->string('libTypSal');
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tarif');
+        Schema::dropIfExists('type_salle');
     }
 };

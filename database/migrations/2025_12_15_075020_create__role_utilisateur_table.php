@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('role_utilisateur', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id('idRoleUti');
             $table->string('libRoleUti');
         });

@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('salle', function (Blueprint $table) {
-            $table->id('idSal');
-            $table->integer('numSal');
-            $table->string('nbPlace');
-            $table->foreignId('idCin')->constrained('cinema', 'idCin');
-            $table->foreignId('idTyp')->constrained('type_salle', 'idTyp');
+        Schema::create('langue', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->id('idLangue');
+            $table->string('LangueSea');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('salle');
+        Schema::dropIfExists('langue');
     }
 };

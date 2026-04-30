@@ -14,9 +14,7 @@ class Personne extends Model
         'prenomPer',
         'bioPer',
         'dateNaisPer',
-        'agePer',
         'lieuNaisPer',
-        'idRolePer',
         'imgPer'
     ];
 

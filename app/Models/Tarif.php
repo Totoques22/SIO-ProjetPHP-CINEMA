@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Tarif extends Model{
-    protected $table ='Tarif';
+    protected $table ='tarif';
     protected $primaryKey = 'idTar';
     public $timestamps = false;
     protected $fillable = [

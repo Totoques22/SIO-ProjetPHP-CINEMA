@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('type_salle', function (Blueprint $table) {
-            $table->id('idTyp');
-            $table->string('libTypSal');
+        Schema::create('cinema', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->id('idCin');
+            $table->string('nomCin');
+            $table->string('adrCin');
+            $table->string('cpCin');
+            $table->string('vilCin');
+            $table->timestamps();
         });
     }
 
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('type_salle');
+        Schema::dropIfExists('cinema');
     }
 };

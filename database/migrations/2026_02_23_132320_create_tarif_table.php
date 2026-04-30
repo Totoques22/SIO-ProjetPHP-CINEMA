@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('type_seance', function (Blueprint $table) {
-            $table->id('idTypeSea');
-            $table->string('libTypeSea');
+        Schema::create('tarif', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->id('idTar');
+            $table->string('libTar');
+            $table->float('prixTar');
+            $table->foreignId('idTypeSea')->constrained('type_seance','idTypeSea')->onDelete('cascade');
+
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('type_seance');
+        Schema::dropIfExists('tarif');
     }
 };

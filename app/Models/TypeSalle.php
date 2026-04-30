@@ -9,6 +9,6 @@ class TypeSalle extends Model{
     protected $primaryKey = 'idTyp';
     public $timestamps = false;
     protected $fillable = [
-        'libTypeSal',
+        'libTypSal',
     ];
 }

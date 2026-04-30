@@ -19,6 +19,6 @@ class Note extends Model {
     }
 
     public function utilisateur() {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'idUti', 'id');
     }
 }

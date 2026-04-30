@@ -10,7 +10,10 @@ class Seance extends Model{
     public $timestamps= false;
     protected $fillable = [
         'dateHeurSea',
-        'langSea'
+        'idFil',
+        'idSal',
+        'idTypeSea',
+        'idLangue',
     ];
     public function concerners()
     {
@@ -18,5 +21,14 @@ class Seance extends Model{
     }
     public function salle() {
         return $this->belongsTo(Salle::class, 'idSal', 'idSal');
+    }
+    public function typeSeance() {
+        return $this->belongsTo(TypeSeance::class, 'idTypeSea', 'idTypeSea');
+    }
+    public function langue() {
+        return $this->belongsTo(Langue::class, 'idLangue', 'idLangue');
+    }
+    public function film() {
+        return $this->belongsTo(Film::class, 'idFil', 'idFil');
     }
 }

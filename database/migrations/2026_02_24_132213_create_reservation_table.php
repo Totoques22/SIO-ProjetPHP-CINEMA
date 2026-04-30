@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reservation', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id('idRes');
             $table->integer('prixTar');
             $table->date('dateRes');
-            //$table->foreignId('idUti')->constrained('utilissateurs', 'idUti');
-            $table->timestamps();
-            $table->foreignId('id')->constrained('users', 'id');
+            $table->foreignId('id')->constrained('users', 'id')->onDelete('cascade');
+            $table->foreignId('idSea')->constrained('seance', 'idSea')->onDelete('cascade');
         });
     }
 

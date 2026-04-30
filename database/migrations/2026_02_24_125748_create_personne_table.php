@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('personne', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id('idPer');
             $table->String('nomPer');
             $table->String('prenomPer');
-            $table->DATE('dateNaisPer');
-            $table->String('agePer');
+            $table->date('dateNaisPer');
             $table->String('bioPer');
             $table->String('lieuNaisPer');
-            $table->foreignId('idRolePer')->constrained('personne', 'idRolePer');
+            $table->string('imgPer')->nullable();
         });
     }
 

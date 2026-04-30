@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Concerner extends Model{
-    protected $table = 'Concerner';
+    protected $table = 'concerner';
     public $timestamps = false;
     protected $fillable = [
         'idRes',

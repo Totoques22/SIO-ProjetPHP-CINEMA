@@ -10,8 +10,11 @@ class Cinema extends Model{
     public $timestamps = false;
     protected $fillable = [
         'nomCin',
-        'AdrCin',
+        'adrCin',
         'cpCin',
         'vilCin'
     ];
+    public function salles() {
+        return $this->hasMany(Salle::class, 'idCin', 'idCin');
+    }
 }

@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('film', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id('idFil');
             $table->string('titreFil');
-            $table->string('descFil');
+            $table->text('descFil');
             $table->string('imgFil');
             $table->integer ('dureFil');
             $table->date('dateSortie');
-            $table->foreignId('idGenre')->constrained('genre', 'idGenre');
+            $table->foreignId('idGenre')->constrained('genre', 'idGenre')->onDelete('cascade');
         });
     }
 
