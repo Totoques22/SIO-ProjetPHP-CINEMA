@@ -31,8 +31,8 @@
                     <a href="{{ route('acteur.admin.gestion') }}">Acteur</a>
                     <a href="{{ route('realisateur.admin.gestion') }}">Réalisateur</a>
                     <a href="{{ route('scenariste.admin.gestion') }}">Scénariste</a>
-                    <a href="{{ route('gestion.cinema') }}">Cinéma</a>
-                    <a href="{{ route('gestion.programmation') }}">Programmation</a>
+                    <a href="{{ route('cinema.admin.gestion') }}">Cinéma</a>
+                    <a href="{{ route('seance.admin.gestion') }}">Programmation</a>
                 </div>
             </div>
     </div>
