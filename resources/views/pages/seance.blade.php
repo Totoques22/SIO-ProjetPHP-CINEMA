@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="{{ asset('cinema-style.css') }}">
 </head>
 
-<!-- header admin si admin a ajouter  -->
 <body class="cinema-body">
 @if(auth()->check() && auth()->user()->role === 'admin')
     @include('pages.header-admin')

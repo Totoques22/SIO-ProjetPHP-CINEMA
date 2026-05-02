@@ -183,3 +183,6 @@ Route::post('/ajout-programme', [SeanceController::class, 'store'])->name('seanc
 Route::get('/admin/seance/{id}/edit', [SeanceController::class, 'edit'])->name('seance.edit');
 Route::put('/admin/seance/{id}', [SeanceController::class, 'update'])->name('seance.update');
 Route::delete('/seance-admin/{id}', [SeanceController::class, 'destroy'])->name('seance.destroy');
+
+Route::get('/mes-reservations', [ReservationController::class, 'mesReservations'])
+    ->name('pages.mes-reservations');

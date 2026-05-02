@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model{
     protected $table ='Reservation';
     protected $primaryKey = 'idRes';
-    public $timestamps ;
+    public $timestamps = false ;
     protected $fillable=[
         'idUser',
         'idSea'
