@@ -13,7 +13,11 @@
 
 <!-- header admin si admin a ajouter  -->
 <body class="cinema-body">
-@include('pages.header')
+@if(auth()->check() && auth()->user()->role === 'admin')
+    @include('pages.header-admin')
+@else
+    @include('pages.header')
+@endif
 
 
 <div class="main-content">
