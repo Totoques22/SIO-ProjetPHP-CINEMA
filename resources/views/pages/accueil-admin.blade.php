@@ -19,16 +19,15 @@
 <div class="main-content">
     <!-- Barre de recherche -->
     <div class="search-section">
-        <div class="search-container">
+        <form action="{{ route('accueil') }}" method="GET" class="search-container">
             <img src="{{ asset('images/loupe.png') }}"
                  alt="Rechercher"
                  class="search-icon-img"
                  width="20"
                  height="20">
-            <input type="text" placeholder="Rechercher un film">
-        </div>
+            <input type="text" name="recherche" placeholder="Rechercher un film" value="{{ $recherche ?? '' }}">
+        </form>
     </div>
-</div>
 
 @if(session('success'))
     <script>
