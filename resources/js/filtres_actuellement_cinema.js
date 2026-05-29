@@ -1,65 +1,153 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Attend que toute la page HTML soit complètement chargée avant de lancer le script
 
-    // On récupère les éléments utiles
-    const tariffs = document.querySelector('.reservation-tariffs');
-    const placesLines = document.getElementById('placesLines');
-    const totalValue = document.getElementById('totalValue');
+    const openBtn = document.getElementById('openFilters');
+    // Récupère le bouton qui sert à ouvrir les filtres
 
-    // Sécurité : si un élément manque, on stop
-    if (!tariffs || !placesLines || !totalValue) return;
+    const overlay = document.getElementById('filtersOverlay');
+    // Récupère la grande zone qui contient le fond gris + le panneau de filtres
 
-    function euros(cents) {
-        // Convertit des centimes en texte "xx.xx€"
-        return (cents / 100).toFixed(2) + '€';
-    }
+    const closeBtn = document.getElementById('closeFilters');
+    // Récupère le bouton qui permet de fermer le panneau
 
-    function refresh() {
-        // Met à jour : inputs hidden, bouton -, lignes récap, total
-        let total = 0;
-        const lines = [];
+    if (!openBtn || !overlay || !closeBtn) return;
+    // Sécurité : si un des éléments n’existe pas sur la page, on arrête le script
 
-        tariffs.querySelectorAll('.reservation-tariff-row').forEach(function (row) {
-            const price = parseInt(row.dataset.price || '0', 10);
-            const name = row.querySelector('.reservation-tariff-name')?.textContent.trim() || 'Tarif';
-            const qtyEl = row.querySelector('[data-qty]') || row.querySelector('.reservation-qty');
-            const hidden = row.querySelector('input[type="hidden"]');
-            const minus = row.querySelector('.reservation-qty-btn[data-action="minus"]');
+    const open = () => {
+        // Fonction qui ouvre le panneau des filtres
 
-            if (!qtyEl) return;
+        overlay.classList.add('active');
+        // Ajoute la classe "active" pour rendre le panneau visible
 
-            const qty = parseInt(qtyEl.textContent || '0', 10) || 0;
+    };
 
-            if (hidden) hidden.value = qty;
-            if (minus) minus.disabled = qty <= 0;
+    const close = () => {
+        // Fonction qui ferme le panneau des filtres
 
-            total += qty * price;
-            if (qty > 0) lines.push(qty + ' - ' + name);
-        });
+        overlay.classList.remove('active');
+        // Retire la classe "active" pour masquer le panneau
 
-        placesLines.innerHTML = lines.length ? lines.join('<br>') : '0';
-        totalValue.textContent = euros(total);
-    }
+    };
 
-    document.addEventListener('click', function (event) {
-        // On capte les clics sur +/-
-        const btn = event.target.closest('.reservation-qty-btn');
-        if (!btn) return;
+    openBtn.addEventListener('click', open);
+    // Quand on clique sur le bouton d’ouverture, on affiche le panneau
 
-        const row = btn.closest('.reservation-tariff-row');
-        if (!row) return;
+    closeBtn.addEventListener('click', close);
+    // Quand on clique sur le bouton de fermeture, on masque le panneau
 
-        const qtyEl = row.querySelector('[data-qty]') || row.querySelector('.reservation-qty');
-        if (!qtyEl) return;
+    overlay.addEventListener('click', (e) => {
+        // Écoute les clics dans toute la zone de l’overlay
 
-        let qty = parseInt(qtyEl.textContent || '0', 10) || 0;
-
-        if (btn.dataset.action === 'minus') qty = Math.max(0, qty - 1);
-        if (btn.dataset.action === 'plus') qty = qty + 1;
-
-        qtyEl.textContent = qty;
-        refresh();
+        if (e.target === overlay) close();
+        // Vérifie si on a cliqué sur le fond
+        // Si oui, ferme le popup
     });
 
-    // Init
-    refresh();
+    document.querySelectorAll('.filters-section-toggle').forEach((btn) => {
+        // Récupère tous les boutons qui servent à ouvrir ou fermer une section
+
+        btn.addEventListener('click', () => {
+            // Quand on clique sur un bouton d’accordéon
+
+            const targetSel = btn.getAttribute('data-target');
+            // Récupère le sélecteur de la section liée à ce bouton
+
+            const section = document.querySelector(targetSel);
+            // Récupère la section à ouvrir ou fermer
+
+            if (!section) return;
+            // Sécurité : si la section n’existe pas, on arrête
+
+            const isCollapsed = section.classList.contains('is-collapsed');
+            // Vérifie si la section est actuellement fermée
+
+            section.classList.toggle('is-collapsed', !isCollapsed);
+            // Ouvre ou ferme la section
+
+            btn.setAttribute('aria-expanded', isCollapsed ? 'true' : 'false');
+            // Met à jour l’attribut d’accessibilité pour indiquer si la section est ouverte ou fermée
+
+            const chev = btn.querySelector('.chev');
+            // Récupère la petite flèche affichée dans le bouton
+
+            if (chev) chev.textContent = isCollapsed ? '▾' : '▸';
+            // Change la flèche selon l’état de la section
+        });
+    });
+
+    document.querySelectorAll('.pill').forEach((pill) => {
+        // Récupère toutes les pastilles de genre
+
+        pill.addEventListener('click', () => {
+            // Quand on clique sur une pastille
+
+            pill.classList.toggle('pill-active');
+            // Ajoute ou retire la classe "pill-active" pour sélectionner ou désélectionner la pastille
+        });
+    });
+
+    document.querySelectorAll('.year-item').forEach((item) => {
+        // Récupère toutes les options d’année
+
+        item.addEventListener('click', () => {
+            // Quand on clique sur une année
+
+            document.querySelectorAll('.year-item').forEach(i => i.classList.remove('pill-active'));
+            // Retire la classe active sur toutes les années
+
+            item.classList.add('pill-active');
+            // Active uniquement l’année sur laquelle on vient de cliquer
+        });
+    });
+
+    document.getElementById('resetFilters')?.addEventListener('click', () => {
+        // Écoute le clic sur le bouton "Réinitialiser" s’il existe
+
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('pill-active'));
+        // Désactive toutes les pastilles de genre
+
+        document.querySelectorAll('.year-item').forEach(i => i.classList.remove('pill-active'));
+        // Désactive aussi l’année sélectionnée
+    });
+
+    document.getElementById('applyFilters')?.addEventListener('click', () => {
+        // Écoute le clic sur le bouton "Appliquer" s’il existe
+
+        const params = new URLSearchParams();
+        // Crée un objet qui permet de construire les paramètres de l’URL
+
+        document.querySelectorAll('.pill.pill-active').forEach(p => {
+            // Récupère toutes les pastilles de genre sélectionnées
+
+            const id = p.dataset.genreId;
+            // Récupère l’identifiant du genre stocké dans l’attribut data-genre-id
+
+            if (id) params.append('genres[]', id);
+            // Ajoute l’id du genre dans l’URL s’il existe
+        });
+
+        const searchInput = document.getElementById('searchBar');
+        // Récupère la barre de recherche
+
+        const searchValue = searchInput.value.trim();
+        // Récupère le texte saisi sans les espaces inutiles au début et à la fin
+
+        if (searchValue !== '') {
+            params.set('recherche', searchValue);
+            // Ajoute la recherche dans l’URL si un texte a été saisi
+        }
+
+        const year = document.querySelector('.year-item.pill-active');
+        // Récupère l’année actuellement sélectionnée
+
+        if (year) params.set('year', year.dataset.year);
+        // Ajoute l’année dans l’URL si une année est sélectionnée
+
+        window.location.href = '/tous-les-films?' + params.toString();
+        // Redirige vers la page avec les filtres choisis
+
+        close();
+        // Ferme le panneau des filtres
+    });
+
 });
