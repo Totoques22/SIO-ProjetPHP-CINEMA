@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use Hash;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Genre;
@@ -103,38 +105,38 @@ class DatabaseSeeder extends Seeder
         Tarif::create(['libTar' => 'Etudiant',     'prixTar' => 8.50,  'idTypeSea' => $tsea3->idTypeSea]);
 
         // 9. SEANCES
-        Seance::create(['dateHeurSea' => '2026-03-10 10:00:00', 'idFil' => $f1->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-10 14:00:00', 'idFil' => $f1->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-10 18:00:00', 'idFil' => $f1->idFil,  'idSal' => $sal2->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-10 11:00:00', 'idFil' => $f2->idFil,  'idSal' => $sal2->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-11 21:00:00', 'idFil' => $f2->idFil,  'idSal' => $sal3->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-11 14:00:00', 'idFil' => $f3->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-12 17:00:00', 'idFil' => $f3->idFil,  'idSal' => $sal6->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-11 20:00:00', 'idFil' => $f4->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-13 20:30:00', 'idFil' => $f4->idFil,  'idSal' => $sal3->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-05-10 10:00:00', 'idFil' => $f1->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-05-10 14:00:00', 'idFil' => $f1->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-05-10 18:00:00', 'idFil' => $f1->idFil,  'idSal' => $sal2->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-05-10 11:00:00', 'idFil' => $f2->idFil,  'idSal' => $sal2->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-05-11 21:00:00', 'idFil' => $f2->idFil,  'idSal' => $sal3->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-05-11 14:00:00', 'idFil' => $f3->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-05-12 17:00:00', 'idFil' => $f3->idFil,  'idSal' => $sal6->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-05-11 20:00:00', 'idFil' => $f4->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-05-13 20:30:00', 'idFil' => $f4->idFil,  'idSal' => $sal3->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
         Seance::create(['dateHeurSea' => '2026-03-12 16:30:00', 'idFil' => $f5->idFil,  'idSal' => $sal2->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-14 10:00:00', 'idFil' => $f5->idFil,  'idSal' => $sal4->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-12 14:00:00', 'idFil' => $f6->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-12 19:00:00', 'idFil' => $f7->idFil,  'idSal' => $sal3->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-13 15:00:00', 'idFil' => $f8->idFil,  'idSal' => $sal5->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-13 18:30:00', 'idFil' => $f9->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-14 20:00:00', 'idFil' => $f10->idFil, 'idSal' => $sal2->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-14 14:00:00', 'idFil' => $f11->idFil, 'idSal' => $sal3->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-15 11:00:00', 'idFil' => $f12->idFil, 'idSal' => $sal4->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-15 16:00:00', 'idFil' => $f13->idFil, 'idSal' => $sal6->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-15 21:00:00', 'idFil' => $f14->idFil, 'idSal' => $sal5->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-16 19:00:00', 'idFil' => $f15->idFil, 'idSal' => $sal2->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-16 21:30:00', 'idFil' => $f16->idFil, 'idSal' => $sal1->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-17 18:00:00', 'idFil' => $f17->idFil, 'idSal' => $sal3->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-17 20:30:00', 'idFil' => $f18->idFil, 'idSal' => $sal5->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-18 15:30:00', 'idFil' => $f19->idFil, 'idSal' => $sal4->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-18 18:00:00', 'idFil' => $f20->idFil, 'idSal' => $sal6->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-19 21:00:00', 'idFil' => $f21->idFil, 'idSal' => $sal2->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-19 14:30:00', 'idFil' => $f22->idFil, 'idSal' => $sal1->idSal, 'idTypeSea' => $tsea3->idTypeSea, 'idLangue' => $lJa->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-20 10:30:00', 'idFil' => $f23->idFil, 'idSal' => $sal3->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-21 14:00:00', 'idFil' => $f11->idFil, 'idSal' => $sal4->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-21 21:00:00', 'idFil' => $f16->idFil, 'idSal' => $sal2->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
-        Seance::create(['dateHeurSea' => '2026-03-22 18:30:00', 'idFil' => $f8->idFil,  'idSal' => $sal6->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-14 10:00:00', 'idFil' => $f5->idFil,  'idSal' => $sal4->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-12 14:00:00', 'idFil' => $f6->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-12 19:00:00', 'idFil' => $f7->idFil,  'idSal' => $sal3->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-13 15:00:00', 'idFil' => $f8->idFil,  'idSal' => $sal5->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-13 18:30:00', 'idFil' => $f9->idFil,  'idSal' => $sal1->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-14 20:00:00', 'idFil' => $f10->idFil, 'idSal' => $sal2->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-14 14:00:00', 'idFil' => $f11->idFil, 'idSal' => $sal3->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-15 11:00:00', 'idFil' => $f12->idFil, 'idSal' => $sal4->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-15 16:00:00', 'idFil' => $f13->idFil, 'idSal' => $sal6->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-15 21:00:00', 'idFil' => $f14->idFil, 'idSal' => $sal5->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-16 19:00:00', 'idFil' => $f15->idFil, 'idSal' => $sal2->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-16 21:30:00', 'idFil' => $f16->idFil, 'idSal' => $sal1->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-17 18:00:00', 'idFil' => $f17->idFil, 'idSal' => $sal3->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-17 20:30:00', 'idFil' => $f18->idFil, 'idSal' => $sal5->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-18 15:30:00', 'idFil' => $f19->idFil, 'idSal' => $sal4->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-18 18:00:00', 'idFil' => $f20->idFil, 'idSal' => $sal6->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-19 21:00:00', 'idFil' => $f21->idFil, 'idSal' => $sal2->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-19 14:30:00', 'idFil' => $f22->idFil, 'idSal' => $sal1->idSal, 'idTypeSea' => $tsea3->idTypeSea, 'idLangue' => $lJa->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-20 10:30:00', 'idFil' => $f23->idFil, 'idSal' => $sal3->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-21 14:00:00', 'idFil' => $f11->idFil, 'idSal' => $sal4->idSal, 'idTypeSea' => $tsea1->idTypeSea, 'idLangue' => $lFr->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-21 21:00:00', 'idFil' => $f16->idFil, 'idSal' => $sal2->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
+        Seance::create(['dateHeurSea' => '2026-07-22 18:30:00', 'idFil' => $f8->idFil,  'idSal' => $sal6->idSal, 'idTypeSea' => $tsea2->idTypeSea, 'idLangue' => $lEn->idLangue]);
 
         // 10. ROLES DES PERSONNES
         $rReal  = RolePersonne::create(['libRolePer' => 'Realisateur']);
@@ -190,7 +192,12 @@ class DatabaseSeeder extends Seeder
         Participe::create(['idPer' => $pBongJoonho->idPer,  'idFil' => $f26->idFil, 'idRolePer' => $rReal->idRolePer]);
         Participe::create(['idPer' => $pPattinson->idPer,   'idFil' => $f26->idFil, 'idRolePer' => $rActe->idRolePer]);
         Participe::create(['idPer' => $pBongJoonho->idPer,  'idFil' => $f26->idFil, 'idRolePer' => $rSce->idRolePer]);
+
         //ajout d'utilisateur de test Admin
-        Users::create()
+        User::create([
+            'username' => 'admin',
+            'password' => Hash::make('0123456'),
+            'role' => 'admin',
+        ]);
     }
 }
