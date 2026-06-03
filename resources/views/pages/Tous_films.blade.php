@@ -17,17 +17,32 @@
     <h1 class="page-title">Tous les films</h1>
 
     <div class="search-section">
-        <div class="search-container">
-            <img src="{{ asset('images/loupe.png') }}"
-                 width="35"
-                 height="35"
-            >
-            <input type="text" id="searchBar" placeholder="Chercher un film">
-        </div>
+
+        <form action="{{ route('films.index') }}"
+              method="GET"
+              style="display:flex; align-items:center; flex:1;">
+
+            <div class="search-container">
+                <img src="{{ asset('images/loupe.png') }}"
+                     width="35"
+                     height="35">
+
+                <input
+                    type="text"
+                    id="searchBar"
+                    name="recherche"
+                    placeholder="Chercher un film"
+                    value="{{ request('recherche') }}"
+                >
+            </div>
+
+        </form>
+
         <button class="filter-btn" id="openFilters" type="button">
             <span class="filter-icon">≡</span>
             Filtres
         </button>
+
     </div>
     <!-- POPUP FILTRES -->
     <div class="filters-overlay" id="filtersOverlay" aria-hidden="true">

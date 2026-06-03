@@ -154,4 +154,29 @@ document.addEventListener('DOMContentLoaded', function () {
         // Ferme le panneau des filtres
     });
 
+    const searchBar = document.getElementById('searchBar');
+
+    if (searchBar) {
+
+        searchBar.addEventListener('keydown', function (e) {
+
+            if (e.key === 'Enter') {
+
+                const value = searchBar.value.trim();
+
+                const url = new URL(window.location.href);
+
+                if (value !== '') {
+                    url.searchParams.set('recherche', value);
+                } else {
+                    url.searchParams.delete('recherche');
+                }
+
+                window.location.href = url.toString();
+            }
+
+        });
+
+    }
+
 });
