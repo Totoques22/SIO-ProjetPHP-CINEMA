@@ -84,7 +84,11 @@ document.addEventListener('DOMContentLoaded', function () {
             // Ajoute l’id du genre dans l’URL s’il existe
         });
 
-        window.location.href = '/actuellement-au-cinema?' + params.toString();
+        const url = new URL(window.location.href);
+
+        url.search = params.toString();
+
+        window.location.href = url.toString();
         // Redirige vers la page avec les genres sélectionnés dans l’URL
 
         close();

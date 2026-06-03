@@ -143,7 +143,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (year) params.set('year', year.dataset.year);
         // Ajoute l’année dans l’URL si une année est sélectionnée
 
-        window.location.href = '/tous-les-films?' + params.toString();
+        const url = new URL(window.location.href);
+
+        url.search = params.toString();
+
+        window.location.href = url.toString();
         // Redirige vers la page avec les filtres choisis
 
         close();
