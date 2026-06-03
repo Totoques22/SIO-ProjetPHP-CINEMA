@@ -39,8 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
             timer = setTimeout(function () {
-                fetch('/recherche?q=' + encodeURIComponent(q))
-                    .then(r => r.json())
+                fetch(window.routes.recherche + '?q=' + encodeURIComponent(q))                    .then(r => r.json())
                     .then(data => {
                         results.innerHTML = '';
                         if (!data.length) {

@@ -43,8 +43,8 @@
     <div class="popup">
         @guest
             <h2>Mon compte</h2>
-            <button class="popup-btn btn-login" onclick="window.location.href='/connexion'">Se connecter</button>
-            <button class="popup-btn btn-signup"  onclick="window.location.href='/inscription'">S'inscrire</button>
+            <button class="popup-btn btn-login" onclick="window.location.href='{{ route('connexion') }}'">Se connecter</button>
+            <button class="popup-btn btn-signup"  onclick="window.location.href='{{ route('inscription') }}'">S'inscrire</button>
         @endguest
             @auth
                 <form style="margin-top:10px;" action="{{ route('logout') }}" method="POST">
@@ -53,12 +53,17 @@
                         Se déconnecter
                     </button>
                 </form>
-                <button class="popup-btn btn-signup" onclick="window.location.href='/mes-reservations'">
+                <button class="popup-btn btn-signup" onclick="window.location.href='{{ route('pages.mes-reservations') }}'">
                     Mes réservations
                 </button>
             @endauth
     </div>
 </div>
+<script>
+    window.routes = {
+        recherche: "{{ route('recherche') }}"
+    };
+</script>
 @vite('resources/js/popup_connexion.js')
 @vite('resources/js/loupe-recherche.js')
 </body>

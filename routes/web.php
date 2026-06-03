@@ -16,7 +16,7 @@ use App\Http\Controllers\ReservationController;
 
 Route::get('/connexion', function () {
     return view('pages.connexion');
-});
+})->name('connexion');
 Route::post('/connexion', [ConnexionController::class, 'login'])->name('login');
 
 Route::get('/connexion_reservation', [ConnexionController::class, 'showLoginForm'])->name('login_reservation');
@@ -24,7 +24,8 @@ Route::post('/connexion_reservation', [ConnexionController::class, 'login_reserv
 
 Route::get('/inscription', function () {
     return view('pages.Inscription');
-});
+})->name('inscription');
+
 Route::post('/inscription', [InscriptionController::class, 'sign_in'])->name('sign_in');
 Route::get('/inscription_reservation', [InscriptionController::class, 'showRegistrationForm'])->name('inscription_reservation');
 Route::post('/inscription_reservation', [InscriptionController::class, 'sign_in_reservation'])->name('sign_in_reservation');

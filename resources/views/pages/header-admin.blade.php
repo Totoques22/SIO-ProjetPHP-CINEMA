@@ -35,6 +35,7 @@
                     <a href="{{ route('seance.admin.gestion') }}">Programmation</a>
                 </div>
             </div>
+        </nav>
     </div>
 
     <div class="header-right">
@@ -66,6 +67,11 @@
         @endauth
     </div>
 </div>
+<script>
+    window.routes = {
+        recherche: "{{ route('recherche') }}"
+    };
+</script>
 @vite('resources/js/popup-gestion.js')
 @vite('resources/js/popup_connexion.js')
 @vite('resources/js/loupe-recherche.js')
